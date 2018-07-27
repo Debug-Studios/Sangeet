@@ -30,6 +30,12 @@ const mainMenuTemplate = [
   },
 ];
 
+// MacOS requires the menu item to be the second object.
+// This inserts an empty object to the start of mainMenuTemplate
+if (process.platform === 'darwin') {
+  mainMenuTemplate.unshift({});
+}
+
 function createWindow() {
   /**
    * Initial window options
