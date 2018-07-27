@@ -4,9 +4,9 @@
 
 #### Build Setup
 
-``` bash
+```bash
 # install dependencies
-yarn install
+yarn
 
 # serve with hot reload at localhost:9080
 yarn run dev
@@ -20,7 +20,6 @@ yarn test
 
 # lint all JS/Vue component files in `src/`
 yarn run lint
-
 ```
 
 ---
