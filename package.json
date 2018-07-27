@@ -58,7 +58,6 @@
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
     "pug": "^2.0.3",
-    "pug-loader": "^2.4.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1"
@@ -109,6 +108,8 @@
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
     "node-sass": "^4.9.2",
+    "pug-loader": "https://github.com/pugjs/pug-loader/tarball/master",
+    "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",

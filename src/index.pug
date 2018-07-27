@@ -1,0 +1,3 @@
+doctype html html head meta(charset='utf-8') title sangeet body #app // Set `__static` path to static files in production
+script. if (process.env.NODE_ENV !== 'development') window.__static = require('path').join(__dirname, '/static').replace(/\\\/g,
+'\\\\') // webpack builds are automatically injected

@@ -7160,9 +7160,9 @@ pug-load@^2.0.11:
     object-assign "^4.1.0"
     pug-walk "^1.1.7"
 
-pug-loader@^2.4.0:
+"pug-loader@https://github.com/pugjs/pug-loader/tarball/master":
   version "2.4.0"
-  resolved "https://registry.yarnpkg.com/pug-loader/-/pug-loader-2.4.0.tgz#18eebdda045d9c31c2856f1cc3ceb8d3df7ca49a"
+  resolved "https://github.com/pugjs/pug-loader/tarball/master#22b27fead292a0d061af821f8a16b219ba321604"
   dependencies:
     loader-utils "^1.1.0"
     pug-walk "^1.0.0"
@@ -7174,6 +7174,12 @@ pug-parser@^5.0.0:
   dependencies:
     pug-error "^1.3.2"
     token-stream "0.0.1"
+
+pug-plain-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/pug-plain-loader/-/pug-plain-loader-1.0.0.tgz#cef2a984c90251882109ec2d417a6b433aa6b42a"
+  dependencies:
+    loader-utils "^1.1.0"
 
 pug-runtime@^2.0.4:
   version "2.0.4"
