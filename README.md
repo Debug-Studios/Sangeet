@@ -1,6 +1,6 @@
 # sangeet
 
-> A Free and Cross-platform music player for Windows, Linux and MacOS
+> A Free and cross platform music player for Windows, Linux and MacOS
 
 #### Build Setup
 
