@@ -60,8 +60,24 @@ $--color-info: #909399 !default;
 /* icon font path, required */
 $--font-path: "~element-ui/lib/theme-chalk/fonts";
 
-@import "~element-ui/packages/theme-chalk/src/index";
-
-body {
-  background-color: $--color-dark;
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("./fonts/LibreFranklin-Regular.ttf");
 }
+
+@font-face {
+  font-family: "Libre Franklin Bold";
+  src: url("./fonts/LibreFranklin-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "Libre Franklin Semi Bold";
+  src: url("./fonts/LibreFranklin-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Libre Franklin Light";
+  src: url("./fonts/LibreFranklin-ExtraLight.ttf");
+}
+
+@import "~element-ui/packages/theme-chalk/src/index";

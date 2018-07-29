@@ -11,5 +11,11 @@
 </script>
 
 <style>
-  /* CSS */
+body {
+  background-color: #1b1d1c;
+}
+
+* {
+  font-family: "Libre Franklin", sans-serif;
+}
 </style>
