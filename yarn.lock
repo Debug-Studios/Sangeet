@@ -3349,6 +3349,12 @@ eslint-config-airbnb-base@^12.1.0:
   dependencies:
     eslint-restricted-globals "^0.1.1"
 
+eslint-config-prettier@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.9.0.tgz#5ecd65174d486c22dff389fe036febf502d468a3"
+  dependencies:
+    get-stdin "^5.0.1"
+
 eslint-friendly-formatter@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/eslint-friendly-formatter/-/eslint-friendly-formatter-4.0.1.tgz#27d504dc837f7caddbf201b2e84a4ee730ba3efa"
@@ -3419,6 +3425,12 @@ eslint-plugin-import@^2.12.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
     resolve "^1.6.0"
+
+eslint-plugin-vue@^4.7.1:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-4.7.1.tgz#c829b9fc62582c1897b5a0b94afd44ecca511e63"
+  dependencies:
+    vue-eslint-parser "^2.0.3"
 
 eslint-restricted-globals@^0.1.1:
   version "0.1.1"
@@ -3492,7 +3504,7 @@ eslint@^4.19.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-espree@^3.5.4:
+espree@^3.5.2, espree@^3.5.4:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
   dependencies:
@@ -4056,6 +4068,10 @@ get-func-name@^2.0.0:
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
+
+get-stdin@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
 
 get-stream@^3.0.0:
   version "3.0.0"
@@ -9023,6 +9039,17 @@ void-elements@^2.0.0, void-elements@^2.0.1:
 vue-electron@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/vue-electron/-/vue-electron-1.0.6.tgz#e798e03180b8933539defe31f92e53b9242b9406"
+
+vue-eslint-parser@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
+  dependencies:
+    debug "^3.1.0"
+    eslint-scope "^3.7.1"
+    eslint-visitor-keys "^1.0.0"
+    espree "^3.5.2"
+    esquery "^1.0.0"
+    lodash "^4.17.4"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.0"
