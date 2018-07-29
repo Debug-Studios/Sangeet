@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    h1 Side Menu
+    h1 Hello
 </template>
 
 <style lang="scss" scoped>
@@ -9,4 +9,3 @@ div {
   border: 1px solid white;
 }
 </style>
-

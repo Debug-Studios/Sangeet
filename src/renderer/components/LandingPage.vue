@@ -1,18 +1,25 @@
 <template lang="pug">
-  div
-    el-row
-      el-button Button
-      el-button(type="primary") Button 2
-      el-button(type="success")
-      el-button(type="info")
-      el-button(type="warning")
-      el-button(type="danger" icon="el-icon-search" circle)
+  el-container(direction="vertical")
+
+    el-container
+      el-aside(width="200px")
+        side-menu
+
+      el-main(style="min-height: 400px;")
+        router-view
+
+    el-footer
+      now-playing-bottom
 
 </template>
 
 <script>
+import NowPlayingBottom from "./LandingPage/NowPlayingBottom.vue";
+import SideMenu from "./LandingPage/SideMenu.vue";
+
 export default {
   name: "landing-page",
+  components: { "now-playing-bottom": NowPlayingBottom, "side-menu": SideMenu },
   data() {
     return {
       visible: false

@@ -81,3 +81,23 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 }
 
 @import "~element-ui/packages/theme-chalk/src/index";
+
+* {
+  font-family: "Libre Franklin", sans-serif;
+}
+
+// Dark theme resets
+
+body {
+  background-color: $--color-dark;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: $--color-light-secondary;
+}
