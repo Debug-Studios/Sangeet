@@ -1,6 +1,7 @@
 <template lang="pug">
   el-col(:span='24')
     el-menu.el-menu-vertical-demo(default-active ='2' background-color='#545c64' text-color='#fff' active-text-color='#ffd04b' style='min-height:90vh;')
+      h1 SANGEET
       el-menu-item(index='1')
         i.el-icon-menu
         span Now Playing
