@@ -17,4 +17,20 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.transparent-button {
+  background: none !important;
+  border: none !important;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: none !important;
+    border: none !important;
+  }
+}
+
+.center-container {
+  justify-content: center;
+}
 </style>

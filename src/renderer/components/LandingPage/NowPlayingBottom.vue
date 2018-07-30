@@ -47,10 +47,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.center-container {
-  justify-content: center;
-}
-
 .now-playing-bottom {
   background-color: #1b1d1c;
   border: none;
@@ -72,18 +68,6 @@ export default {
 
   .song-artist {
     font-weight: 200;
-  }
-}
-
-.transparent-button {
-  background: none;
-  border: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: none;
-    border: none;
   }
 }
 </style>
