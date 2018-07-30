@@ -65,7 +65,7 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 @font-face {
   font-family: "Libre Franklin";
   src: url("./fonts/LibreFranklin-Regular.ttf");
-  font-weight: normal;
+  font-weight: 400;
 }
 
 @font-face {
@@ -87,15 +87,17 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 }
 
 @import "~element-ui/packages/theme-chalk/src/index";
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
 * {
   font-family: "Libre Franklin", sans-serif;
+  font-weight: 400;
 }
 
 // Dark theme resets
 
 body {
-  background-color: $--color-dark;
+  background-color: $--color-dark-secondary;
   min-height: 100%;
 }
 
