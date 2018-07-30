@@ -8,19 +8,19 @@
           h5.song-artist {{songArtist}}
 
 
-    el-col(:span="16" :offset="2")
+    el-col(:span="16" :offset="1")
       el-row(style="display: flex; align-items: center;")
         el-col(:span="4")
           h5.time-text {{playedTime}} / {{totalTime}}
 
         el-col(:span="14")
-          el-col(:span="4").el-container.center-container
+          el-col(:span="7").el-container.right-container
             el-button(icon="fas fa-random" plain circle).transparent-button
-          el-col(:span="12").el-container.center-container
+          el-col(:span="10").el-container.center-container
             el-button(icon="fas fa-backward" plain circle).transparent-button
             el-button(icon="fas fa-pause" plain circle type="primary")
             el-button(icon="fas fa-forward" plain circle).transparent-button
-          el-col(:span="4").el-container.center-container
+          el-col(:span="7").el-container.left-container
             el-button(icon="fas fa-closed-captioning" plain circle).transparent-button
 
         el-col(:span="6" style="align-items: center").el-container.center-container
