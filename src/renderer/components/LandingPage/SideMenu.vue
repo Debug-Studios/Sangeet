@@ -1,5 +1,5 @@
 <template lang="pug">
-  el-menu.el-menu-vertical-demo(default-active ='2' background-color='#1b1d1c' text-color='#fff' active-text-color='#ffd04b' style='min-height:90vh;')
+  el-menu.el-menu-vertical-demo(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#ffd04b' style='min-height:90vh;')
     el-menu-item(index='1')
       i.el-icon-menu
       span Now Playing
@@ -22,10 +22,17 @@
       i.el-icon-menu
       router-link(to='/about')
         span About Us
+    el-menu-item(index='8')
 
 
 </template>
 
 <style lang="scss" scoped>
+
+.is-active{
+  border-left: 10px solid;
+  border-radius: 10px;
+}
+
 </style>
 
