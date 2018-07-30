@@ -1,7 +1,6 @@
 <template lang="pug">
-  h1 Artist View
+  h1 Settings
 </template>
-
 <style scoped>
 
 </style>
