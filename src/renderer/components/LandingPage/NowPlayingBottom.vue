@@ -10,7 +10,7 @@
 
     el-col(:span="18")
       el-row.seekbar-row
-        input(type="range" min=0 max=100 :value="seekbarProgress").seekbar
+        vueSlideBar(v-model="seekbarProgress" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important")
 
       el-row.media-controls
         el-col(:span="4")
@@ -35,7 +35,9 @@
 </template>
 
 <script>
+import VueSlideBar from 'vue-slide-bar';
 export default {
+  components:{'vueSlideBar': VueSlideBar},
   data(){
     return {
       songName: 'Fight My Regrets',
@@ -46,24 +48,11 @@ export default {
       seekbarProgress: 10
     }
   },
-  mounted() {
-    const _R = document.querySelector('.seekbar');
-
-    document.documentElement.classList.add('js');
-
-    _R.style=`--min: ${0||0}; --max: ${100||100};--val: ${this.seekbarProgress||50}`;
-
-    _R.addEventListener('input', e => {
-      _R.style.setProperty('--val', +_R.value)
-    }, false);
-  },
 }
 </script>
 
 
 <style lang="scss" scoped>
-@import "../../assets/input-slider.scss";
-
 .now-playing-bottom {
   background-color: #1b1d1c;
   border: none;
@@ -73,11 +62,6 @@ export default {
 
 .seekbar-row {
   padding: 0;
-  display: flex;
-
-  .seekbar {
-    margin-top: -0.3rem;
-  }
 }
 
 .media-controls {
