@@ -1,23 +1,30 @@
 <template lang="pug">
-  .now-playing-bottom
-    el-row
-      el-col(:span="8")
-        el-container(style="align-items: center")
-          img.image(src="http://assets.blabbermouth.net.s3.amazonaws.com/media/amityafflictionheartbreak.jpg" height="64px" width="64px")
-          el-container(direction="vertical").song-container
-            h3.song-name Fight My Regrets
-            h5.song-artist Amity Affliction
-      el-col(:span="12")
-      el-col(:span="4")
+  el-row.now-playing-bottom
+    el-col(:span="6")
+      el-container.center-container(style="align-items:center")
+        img.image(src="http://assets.blabbermouth.net.s3.amazonaws.com/media/amityafflictionheartbreak.jpg" height="64px" width="64px")
+        el-container(direction="vertical").song-container
+          h4.song-name Fight My Regrets
+          h5.song-artist Amity Affliction
+
+
+    el-col(:span="18")
+      el-container.center-container
+
 
 </template>
 
 <style lang="scss" scoped>
-// Only for UI Creation purpose
+.center-container {
+  justify-content: center;
+}
+
 .now-playing-bottom {
-  background-color: #2f3130;
+  background-color: #1b1d1c;
   padding: 0.5rem 0.5rem;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 .song-container {
@@ -28,8 +35,12 @@
   }
 
   .song-name {
-    font-weight: 200;
+    font-weight: 400;
     margin-bottom: 0;
+  }
+
+  .song-artist {
+    font-weight: 200;
   }
 }
 </style>
