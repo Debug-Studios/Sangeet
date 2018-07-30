@@ -33,4 +33,12 @@ body {
 .center-container {
   justify-content: center;
 }
+
+.left-container {
+  justify-content: flex-start;
+}
+
+.right-container {
+  justify-content: flex-end;
+}
 </style>
