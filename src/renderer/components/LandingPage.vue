@@ -32,3 +32,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.el-footer {
+  padding: 0;
+}
+</style>
+

@@ -60,24 +60,30 @@ $--color-info: #909399 !default;
 /* icon font path, required */
 $--font-path: "~element-ui/lib/theme-chalk/fonts";
 
+/* region Font Faces */
+
 @font-face {
   font-family: "Libre Franklin";
   src: url("./fonts/LibreFranklin-Regular.ttf");
+  font-weight: normal;
 }
 
 @font-face {
-  font-family: "Libre Franklin Bold";
+  font-family: "Libre Franklin";
   src: url("./fonts/LibreFranklin-ExtraBold.ttf");
+  font-weight: 800;
 }
 
 @font-face {
-  font-family: "Libre Franklin Semi Bold";
+  font-family: "Libre Franklin";
   src: url("./fonts/LibreFranklin-SemiBold.ttf");
+  font-weight: 600;
 }
 
 @font-face {
-  font-family: "Libre Franklin Light";
+  font-family: "Libre Franklin";
   src: url("./fonts/LibreFranklin-ExtraLight.ttf");
+  font-weight: 200;
 }
 
 @import "~element-ui/packages/theme-chalk/src/index";
