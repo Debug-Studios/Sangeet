@@ -1,0 +1,94 @@
+// https://codepen.io/thebabydino/pen/goYYrN
+
+$track-w: 100%;
+$track-h: 0.25em;
+$thumb-d: 0.8em;
+$track-c: #e4e4e4;
+$filll-c: #30a9de;
+
+@mixin track($fill: 0) {
+  box-sizing: border-box;
+  border: none;
+  width: $track-w;
+  height: $track-h;
+  background: $track-c;
+
+  @if $fill == 1 {
+    .js & {
+      background: linear-gradient($filll-c, $filll-c)
+        0 /
+        var(--sx)
+        100%
+        no-repeat
+        $track-c;
+    }
+  }
+}
+
+@mixin fill() {
+  height: $track-h;
+  background: $filll-c;
+}
+
+@mixin thumb() {
+  box-sizing: border-box;
+  border: none;
+  width: $thumb-d;
+  height: $thumb-d;
+  border-radius: 50%;
+  background: white;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.seekbar {
+  &,
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--val) - var(--min)) / var(--range));
+  --sx: calc(0.5 *#{$thumb-d} + var(--ratio) * (100% - #{$thumb-d}));
+  margin: 0;
+  padding: 0;
+  width: $track-w;
+  height: $thumb-d;
+  background: transparent;
+  font: 1em/1 arial, sans-serif;
+
+  &::-webkit-slider-runnable-track {
+    @include track(1);
+  }
+  &::-moz-range-track {
+    @include track;
+  }
+  &::-ms-track {
+    @include track;
+  }
+
+  &::-moz-range-progress {
+    @include fill;
+  }
+  &::-ms-fill-lower {
+    @include fill;
+  }
+
+  &::-webkit-slider-thumb {
+    margin-top: 0.5 * ($track-h - $thumb-d);
+    @include thumb;
+  }
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+  &::-ms-thumb {
+    margin-top: 0;
+    @include thumb;
+  }
+
+  &::-ms-tooltip {
+    display: none;
+  }
+}
