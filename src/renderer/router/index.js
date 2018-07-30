@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import AboutUs from './../components/LandingPage/AboutUs.vue';
 
 Vue.use(Router);
 
@@ -13,6 +14,11 @@ export default new Router({
     {
       path: '*',
       redirect: '/',
+    },
+    {
+      path: '/about',
+      name: 'about-page',
+      component: AboutUs,
     },
   ],
 });
