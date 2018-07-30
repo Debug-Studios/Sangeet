@@ -65,7 +65,7 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 @font-face {
   font-family: "Libre Franklin";
   src: url("./fonts/LibreFranklin-Regular.ttf");
-  font-weight: normal;
+  font-weight: 400;
 }
 
 @font-face {
@@ -90,6 +90,7 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 
 * {
   font-family: "Libre Franklin", sans-serif;
+  font-weight: 600;
 }
 
 // Dark theme resets

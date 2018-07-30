@@ -1,14 +1,14 @@
 <template lang="pug">
   .now-playing-bottom
     el-row
-      el-col(:span="6")
+      el-col(:span="8")
         el-container(style="align-items: center")
           img.image(src="http://assets.blabbermouth.net.s3.amazonaws.com/media/amityafflictionheartbreak.jpg" height="64px" width="64px")
           el-container(direction="vertical").song-container
-            h3.song-name Song Name
-            h5.song-artist Song Artist
+            h3.song-name Fight My Regrets
+            h5.song-artist Amity Affliction
       el-col(:span="12")
-      el-col(:span="6")
+      el-col(:span="4")
 
 </template>
 
@@ -29,6 +29,7 @@
 
   .song-name {
     font-weight: 200;
+    margin-bottom: 0;
   }
 }
 </style>
