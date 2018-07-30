@@ -1,11 +1,11 @@
 <template lang="pug">
   el-container(direction="vertical")
 
-    el-container
-      el-aside(width="200px")
+    el-row
+      el-col(:span="6")
         side-menu
 
-      el-main(style="min-height: 400px;")
+      el-col(:span="16" :offset="1").el-main
         router-view
 
     el-footer

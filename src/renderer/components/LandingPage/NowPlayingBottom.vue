@@ -1,6 +1,6 @@
 <template lang="pug">
   el-row.now-playing-bottom
-    el-col(:span="6" style="border-right: 1px solid white")
+    el-col(:span="6" style="border-right: 1px solid #2f3130")
       el-container.center-container(style="align-items:center")
         img.image(src="http://assets.blabbermouth.net.s3.amazonaws.com/media/amityafflictionheartbreak.jpg" height="64px" width="64px")
         el-container(direction="vertical").song-container
@@ -53,7 +53,6 @@ export default {
 
 .now-playing-bottom {
   background-color: #1b1d1c;
-  padding: 0.5rem 0.5rem;
   border: none;
   display: flex;
   align-items: center;
