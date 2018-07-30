@@ -10,7 +10,7 @@
 
     el-col(:span="18")
       el-row.seekbar-row
-        vueSlideBar(v-model="seekbarProgress" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important")
+        vueSlideBar(v-model="seekbarProgress" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#30a9de' }")
 
       el-row.media-controls
         el-col(:span="4")
