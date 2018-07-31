@@ -28,11 +28,15 @@
       el-menu-item(index='7')
         i.item-margin.fa.fa-info-circle
         span About Us
+    el-upload.upload-demo(drag action='' :on-preview='handlePreview' :on-remove='handleRemove' :file-list="fileList" multiple)
+      i.el-icon-upload
+      .el-upload__text Drag and Drop Next Songs
+      
     
 
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .is-active{
   border-left: 10px solid;
@@ -47,9 +51,19 @@
   margin-right: 10px;
 }
 
-.upload-demo{
-  width: 100%;
+.upload-demo .el-upload.el-upload--text{
+  width: 100% !important;
+   
 }
+
+.upload-demo .el-upload.el-upload--text div.el-upload-dragger{
+  margin-top: 1rem;
+  width: 100% !important;
+  background-color: #2f3130;
+   
+}
+
+
 
 </style>
 
