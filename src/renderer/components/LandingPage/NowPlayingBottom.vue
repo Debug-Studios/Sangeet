@@ -58,6 +58,7 @@ export default {
   border: none;
   display: flex;
   align-items: center;
+  max-height: 9.99vh;
 }
 
 .seekbar-row {
