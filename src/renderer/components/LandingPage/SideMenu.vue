@@ -1,5 +1,5 @@
 <template lang="pug">
-  el-menu.el-menu-vertical-demo(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#30a9de' style='min-height:90vh;')
+  el-menu.el-menu-vertical-demo(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#30a9de' style='min-height:90vh;').side-menu
     router-link.plain(to='/nowPlaying')
       el-menu-item(index='1')
         i.item-margin.fa.fa-play
@@ -34,6 +34,7 @@
       
     
 
+
 </template>
 
 <style lang="scss">
@@ -42,7 +43,7 @@
   border-left: 10px solid;
 }
 
-.plain{
+.plain {
   text-decoration: none;
   color: #fff;
 }

@@ -2,7 +2,7 @@
   el-row.now-playing-bottom
     el-col(:span="6" style="border-right: 1px solid #2f3130")
       el-container.center-container(style="align-items:center")
-        img.image(src="http://assets.blabbermouth.net.s3.amazonaws.com/media/amityafflictionheartbreak.jpg" height="64px" width="64px")
+        img.image(src="https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg" height="64px" width="64px")
         el-container(direction="vertical").song-container
           h4.song-name {{songName}}
           h5.song-artist {{songArtist}}
@@ -40,8 +40,8 @@ export default {
   components:{'vueSlideBar': VueSlideBar},
   data(){
     return {
-      songName: 'Fight My Regrets',
-      songArtist: 'Amity Affliction',
+      songName: 'Never Going Back',
+      songArtist: 'The Score',
       totalTime: '4:40',
       playedTime: '1:20',
       volume: 80,
@@ -58,6 +58,7 @@ export default {
   border: none;
   display: flex;
   align-items: center;
+  max-height: 9.99vh;
 }
 
 .seekbar-row {
