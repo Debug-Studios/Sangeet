@@ -92,6 +92,11 @@ $--font-path: "~element-ui/lib/theme-chalk/fonts";
 * {
   font-family: "Libre Franklin", sans-serif;
   font-weight: 400;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
 }
 
 // Dark theme resets
