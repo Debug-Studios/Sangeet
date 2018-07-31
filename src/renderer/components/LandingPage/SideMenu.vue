@@ -1,32 +1,32 @@
 <template lang="pug">
   el-menu.el-menu-vertical-demo(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#ffd04b' style='min-height:90vh;')
-    el-menu-item(index='1')
-      i.el-icon-menu
-      router-link.plain(to='/nowPlaying')
+    router-link.plain(to='/nowPlaying')
+      el-menu-item(index='1')
+        i.el-icon-menu
         span Now Playing
-    el-menu-item(index='2')
-      i.el-icon-setting
-      router-link.plain(to='/songsView')
+    router-link.plain(to='/songsView')
+      el-menu-item(index='2')
+        i.el-icon-setting
         span Songs
-    el-menu-item(index='3')
-      i.el-icon-document
-      router-link.plain(to='/artistView')
+    router-link.plain(to='/artistView')
+      el-menu-item(index='3')
+        i.el-icon-document
         span Artist
-    el-menu-item(index='4')
-      i.el-icon-menu
-      router-link.plain(to='/albumView')
+    router-link.plain(to='/albumView')
+      el-menu-item(index='4')
+        i.el-icon-menu
         span Albums
-    el-menu-item(index='5')
-      i.el-icon-menu
-      router-link.plain(to='/playlistView')
+    router-link.plain(to='/playlistView')
+      el-menu-item(index='5')
+        i.el-icon-menu
         span Playlists
-    el-menu-item.plain(index='6')
-      i.el-icon-setting
-      router-link.plain(to='/settings')
+    router-link.plain(to='/settings')
+      el-menu-item.plain(index='6')
+        i.el-icon-setting
         span Settings
-    el-menu-item(index='7')
-      i.el-icon-menu
-      router-link.plain(to='/about')
+    router-link.plain(to='/about')
+      el-menu-item(index='7')
+        i.el-icon-menu
         span About Us
 
 
