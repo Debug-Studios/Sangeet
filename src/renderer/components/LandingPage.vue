@@ -5,7 +5,7 @@
       el-col(:span="6")
         side-menu
 
-      el-col(:span="17" :offset="1").el-main
+      el-col(:span="17").el-main
         router-view
 
     el-footer
