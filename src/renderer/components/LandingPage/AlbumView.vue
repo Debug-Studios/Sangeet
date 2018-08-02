@@ -2,10 +2,16 @@
   el-row
     el-col(:span='4' v-for='index in 12' :key='0')
       el-card.card(:body-style="{ padding: '0px' }")
-        img.image(src='../../assets/images/image1.png')
-        div(style='padding:5px;')
+        img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
+        div(style='padding:5px;color:#fafafa;')
           span Album Name
-          el-button.button(type='default' icon='fa fa-ellipsis-v' plain)
+          el-dropdown.button(trigger='click')
+            span.el-dropdown-link
+              i.fa.fa-ellipsis-v 
+            el-dropdown-menu.dropdown-menu(slot='dropdown')
+              el-dropdown-item.dropdown-menu-item Add
+              el-dropdown-item.dropdown-menu-item Explore
+              el-dropdown-item.dropdown-menu-item Remove
           div.bottom.clearfix
             p.song-text Total Songs
 </template>
@@ -22,13 +28,9 @@ export default {
 
 <style scoped>
 
-  .card {
-    margin: 8px;
-  }
-
   .song-text {
     font-size: 14px;
-    color: rgb(102, 96, 96);
+    color: #fafafa;
   }
   
   .bottom {
