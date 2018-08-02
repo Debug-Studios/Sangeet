@@ -15,6 +15,7 @@ const winURL =
     ? 'http://localhost:9080'
     : `file://${__dirname}/index.html`;
 
+// Main Menu
 const mainMenuTemplate = [
   {
     label: 'File',
