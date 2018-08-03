@@ -8,7 +8,10 @@
 import LandingPage from './components/LandingPage.vue';
 export default {
   name: "sangeet",
-  components: {'landingPage': LandingPage}
+  components: {'landingPage': LandingPage},
+  mounted() {
+    console.log(this.$db);
+  },
 };
 </script>
 

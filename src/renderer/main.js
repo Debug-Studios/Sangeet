@@ -1,5 +1,4 @@
 import Vue from 'vue';
-
 import axios from 'axios';
 
 // Element UI http://element.eleme.io/#/en-US
@@ -8,6 +7,9 @@ import './assets/element-variables.scss';
 
 import App from './App';
 import router from './router';
+
+import db from '../main/db/dataStore';
+Vue.prototype.$db = db;
 
 Vue.use(ElementUI);
 

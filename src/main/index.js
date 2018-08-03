@@ -1,5 +1,5 @@
 import { app, BrowserWindow, Menu } from 'electron'; // eslint-disable-line
-
+import jetpack from 'fs-jetpack';
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -54,6 +54,8 @@ function createWindow() {
   });
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(mainMenuTemplate));
+
+  require('./db/dbSync');
 }
 
 app.on('ready', createWindow);
