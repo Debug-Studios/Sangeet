@@ -9,8 +9,6 @@
           h2 {{songName}}
           h3 {{artistName}}
 
-          audio(controls :src="songUri")
-
     el-col(:span="14")
       h2 Queue
       el-row(v-for="queueItem in queue").queue-item
