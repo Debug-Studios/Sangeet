@@ -9,9 +9,9 @@ import App from './App';
 import router from './router';
 
 import db from '../main/db/dataStore';
-import dataUriCreator from '../main/db/dataUriCreator';
+import uriCreator from '../main/db/uriCreator';
 Vue.prototype.$db = db;
-Vue.prototype.$dataUriCreator = dataUriCreator;
+Vue.prototype.$uriCreator = uriCreator;
 
 Vue.use(ElementUI);
 

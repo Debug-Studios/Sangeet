@@ -2,7 +2,7 @@
   el-row.now-playing-bottom
     el-col(:span="6" style="border-right: 1px solid #2f3130")
       el-container.center-container(style="align-items:center")
-        img.image(src="https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg" height="64px" width="64px")
+        img.image(:src="coverArt" height="64px" width="64px")
         el-container(direction="vertical").song-container
           h4.song-name {{songName}}
           h5.song-artist {{songArtist}}
@@ -44,8 +44,9 @@ export default {
   components:{'vueSlideBar': VueSlideBar},
   data(){
     return {
-      songName: 'Never Going Back',
-      songArtist: 'The Score',
+      coverArt: '',
+      songName: '',
+      songArtist: '',
       totalTime: 1,
       playedTime: 0,
       volume: 80,
@@ -75,10 +76,15 @@ export default {
     }, 100);
 
     this.$db.find({}, (err, docs) => {
-      this.$dataUriCreator(docs[0].path, (content) => {
+      this.songName = docs[1].title;
+      this.songArtist = docs[1].artist;
+      this.$uriCreator.generateDataUri(docs[1].path, (content) => {
         this.currentSongUri = content;
       });
-      this.totalTime = Math.round(docs[0].duration);
+      this.$uriCreator.generateImageUri(docs[1].path, (image) => {
+        this.coverArt = image;
+      });
+      this.totalTime = Math.round(docs[1].duration);
     });
   },
   methods: {
