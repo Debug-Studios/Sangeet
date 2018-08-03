@@ -9,6 +9,8 @@
           h2 {{songName}}
           h3 {{artistName}}
 
+          audio(controls :src="songUri")
+
     el-col(:span="14")
       h2 Queue
       el-row(v-for="queueItem in queue").queue-item
@@ -28,13 +30,16 @@ export default {
     return {
       songName: 'Never Going Back',
       artistName: 'The Score',
-      queue: [{songName: 'Somewhere in Stockholm', artistName: 'Avicci', totalTime: '2:36'},
-      {songName: 'Blackout', artistName: 'Breathe Carolina', totalTime: '2:36'},
-      {songName: 'Blackout 2', artistName: 'Breathe Carolina', totalTime: '2:36'},
-      {songName: 'Blackout 3', artistName: 'Breathe Carolina', totalTime: '2:36'},
-      {songName: 'Blackout 4', artistName: 'Breathe Carolina', totalTime: '2:36'}]
+      queue: [],
+      songUri: ''
     }
-  }
+  },
+  mounted() {
+    this.$db.find({}, (err, docs) => {
+      console.log(docs[0]);
+      this.songUri = docs[0].dataUri;
+    });
+  },
 }
 </script>
 

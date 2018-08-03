@@ -25,11 +25,6 @@ export default {
       visible: false
     };
   },
-  mounted() {
-    this.$db.find({}, (err, docs) => {
-      console.log(docs);
-    })
-  },
 };
 </script>
 

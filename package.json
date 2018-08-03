@@ -57,10 +57,12 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
     "axios": "^0.18.0",
+    "datauri": "^1.1.0",
     "electron": "^2.0.4",
     "element-ui": "^2.4.5",
     "ffmpeg": "^0.0.4",
     "fs-jetpack": "^2.1.0",
+    "mime": "^2.3.1",
     "music-metadata": "^2.4.2",
     "nedb": "^1.8.0",
     "pug": "^2.0.3",

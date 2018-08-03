@@ -2,6 +2,7 @@ import DataStore from 'nedb';
 import jetpack from 'fs-jetpack';
 import path from 'path';
 import { app } from 'electron';
+const DataURI = require('datauri').promise;
 // https://github.com/Borewit/music-metadata
 const mm = require('music-metadata');
 
@@ -11,7 +12,7 @@ const db = new DataStore({
   filename: path.join(app.getPath('userData'), '/data.db'),
 });
 
-async function addMusicFileToDatabase(filePath, fileMetaData) {
+async function addMusicFileToDatabase(filePath, fileMetaData, dataUri) {
   db.findOne({ path: filePath }, (err, doc) => {
     if (doc === null && !err) {
       const doc = {
@@ -19,6 +20,7 @@ async function addMusicFileToDatabase(filePath, fileMetaData) {
         dateAdded: new Date(),
         isFavorite: false,
         duration: fileMetaData.format.duration,
+        dataUri,
         // Music MetaData
         artist: fileMetaData.common.artist || 'Unknown Artist',
         album: fileMetaData.common.album || 'Unknown Album',
@@ -39,8 +41,9 @@ jetpack.listAsync(app.getPath('music')).then((list) => {
     const filePath = path.join(app.getPath('music'), file);
     if (supportedExtensions.indexOf(path.extname(file)) > -1) {
       const metaData = await mm.parseFile(filePath, { duration: true });
-      console.log(metaData);
-      await addMusicFileToDatabase(filePath, metaData);
+
+      const dataUri = await DataURI(filePath);
+      await addMusicFileToDatabase(filePath, metaData, dataUri);
     }
   });
 });
