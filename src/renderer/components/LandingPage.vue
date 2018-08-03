@@ -25,11 +25,11 @@ export default {
       visible: false
     };
   },
-  methods: {
-    open(link) {
-      this.$electron.shell.openExternal(link);
-    }
-  }
+  mounted() {
+    this.$db.find({}, (err, docs) => {
+      console.log(docs);
+    })
+  },
 };
 </script>
 
@@ -37,9 +37,5 @@ export default {
 .el-footer {
   padding: 0;
 }
-
-
-
-
 </style>
 
