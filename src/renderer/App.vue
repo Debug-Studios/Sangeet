@@ -45,4 +45,18 @@ body {
 .right-container {
   justify-content: flex-end;
 }
+
+.dropdown-menu {
+  background-color: #1b1d1c;
+}
+
+.dropdown-menu-item {
+  font-size: 12px;
+  color: #fafafa;
+
+}
+.card {
+    margin: 10px;
+    background-color: #1b1d1c;
+  }
 </style>
