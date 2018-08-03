@@ -1,9 +1,9 @@
 import DataStore from 'nedb';
 import jetpack from 'fs-jetpack';
-import mm from 'musicmetadata';
-import ffprobe from 'node-ffprobe';
 import path from 'path';
 import { app } from 'electron';
+// https://github.com/Borewit/music-metadata
+const mm = require('music-metadata');
 
 const supportedExtensions = ['.mp3', '.flac', '.aac', '.ogg', '.mp4'];
 const db = new DataStore({
@@ -18,16 +18,15 @@ async function addMusicFileToDatabase(filePath, fileMetaData) {
         path: filePath,
         dateAdded: new Date(),
         isFavorite: false,
+        duration: fileMetaData.format.duration,
         // Music MetaData
-        artist: fileMetaData.artist || 'Unknown Artist',
-        album: fileMetaData.album || 'Unknown Album',
-        albumArtist: fileMetaData.albumartist,
-        title: fileMetaData.title || 'Unknown Title',
-        track: fileMetaData.track,
-        disc: fileMetaData.disc,
-        genre: fileMetaData.genre,
-        date: fileMetaData.year,
-        duration: fileMetaData.duration,
+        artist: fileMetaData.common.artist || 'Unknown Artist',
+        album: fileMetaData.common.album || 'Unknown Album',
+        albumArtist: fileMetaData.common.albumartist,
+        title: fileMetaData.common.title || 'Unknown Title',
+        track: fileMetaData.common.track,
+        genre: fileMetaData.common.genre,
+        year: fileMetaData.common.year,
       };
 
       db.insert(doc);
@@ -36,19 +35,12 @@ async function addMusicFileToDatabase(filePath, fileMetaData) {
 }
 
 jetpack.listAsync(app.getPath('music')).then((list) => {
-  list.forEach((file) => {
+  list.forEach(async (file) => {
     const filePath = path.join(app.getPath('music'), file);
     if (supportedExtensions.indexOf(path.extname(file)) > -1) {
-      mm(jetpack.createReadStream(filePath), { duration: true }, async (err, data) => {
-        if (err) {
-          // Fallback to node-ffprobe to get duration and other essential details.
-          ffprobe(filePath, async (err, probeData) => {
-            await addMusicFileToDatabase(filePath, { duration: probeData.format.duration });
-          });
-        } else {
-          await addMusicFileToDatabase(filePath, data);
-        }
-      });
+      const metaData = await mm.parseFile(filePath, { duration: true });
+      console.log(metaData);
+      await addMusicFileToDatabase(filePath, metaData);
     }
   });
 });
