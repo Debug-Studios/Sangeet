@@ -12,7 +12,7 @@
 
     el-col(:span="18")
       el-row.seekbar-row
-        vueSlideBar(v-model="seekbarProgress" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#30a9de' }")
+        vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#30a9de' }")
 
       el-row.media-controls
         el-col(:span="4")
@@ -46,7 +46,7 @@ export default {
     return {
       songName: 'Never Going Back',
       songArtist: 'The Score',
-      totalTime: 0,
+      totalTime: 1,
       playedTime: 0,
       volume: 80,
       seekbarProgress: 10,
@@ -62,6 +62,18 @@ export default {
       }
     });
 
+    // Refresh UI every 100 ms
+    setInterval(() => {
+      // Seek
+      if(this.seekbarProgress > (this.playedTime + 2) ||
+       this.seekbarProgress < (this.playedTime - 2))
+      {
+        audioPlayer.currentTime = this.seekbarProgress;
+      }
+      this.playedTime = Math.ceil(audioPlayer.currentTime);
+      this.seekbarProgress = this.playedTime;
+    }, 100);
+
     this.$db.find({}, (err, docs) => {
       this.$dataUriCreator(docs[0].path, (content) => {
         this.currentSongUri = content;
@@ -72,7 +84,6 @@ export default {
   methods: {
     refreshUI: function() {
       const audioPlayer = document.getElementById('audio-player');
-      this.playedTime = Math.ceil(audioPlayer.currentTime);
       audioPlayer.volume = this.volume / 100;
     }
   },

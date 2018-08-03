@@ -10,7 +10,6 @@ export default {
   name: "sangeet",
   components: {'landingPage': LandingPage},
   mounted() {
-    console.log(this.$db);
   },
 };
 </script>
@@ -53,10 +52,9 @@ body {
 .dropdown-menu-item {
   font-size: 12px;
   color: #fafafa;
-
 }
 .card {
-    margin: 10px;
-    background-color: #1b1d1c;
-  }
+  margin: 10px;
+  background-color: #1b1d1c;
+}
 </style>
