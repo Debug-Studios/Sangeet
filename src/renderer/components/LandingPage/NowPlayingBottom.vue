@@ -7,6 +7,8 @@
           h4.song-name {{songName}}
           h5.song-artist {{songArtist}}
 
+          audio(:src="currentSongUri")#audio-player
+
 
     el-col(:span="18")
       el-row.seekbar-row
@@ -36,18 +38,49 @@
 
 <script>
 import VueSlideBar from 'vue-slide-bar';
+import { setTimeout } from 'timers';
+
 export default {
   components:{'vueSlideBar': VueSlideBar},
   data(){
     return {
       songName: 'Never Going Back',
       songArtist: 'The Score',
-      totalTime: '4:40',
-      playedTime: '1:20',
+      totalTime: 0,
+      playedTime: 0,
       volume: 80,
-      seekbarProgress: 10
+      seekbarProgress: 10,
+      currentSongUri: '',
+      isPaused: false
     }
   },
+  mounted() {
+    const audioPlayer = document.getElementById('audio-player');
+    audioPlayer.addEventListener('loadeddata', () => {
+      if(audioPlayer.readyState >= 2){
+        audioPlayer.play();
+      }
+    });
+
+    this.$db.find({}, (err, docs) => {
+      this.$dataUriCreator(docs[0].path, (content) => {
+        this.currentSongUri = content;
+      });
+      this.totalTime = Math.round(docs[0].duration);
+    });
+  },
+  methods: {
+    refreshUI: function() {
+      const audioPlayer = document.getElementById('audio-player');
+      this.playedTime = Math.ceil(audioPlayer.currentTime);
+      audioPlayer.volume = this.volume / 100;
+    }
+  },
+  watch : {
+    volume : function () {
+      this.refreshUI();
+    }
+  }
 }
 </script>
 

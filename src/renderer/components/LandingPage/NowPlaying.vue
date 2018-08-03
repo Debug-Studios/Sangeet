@@ -28,15 +28,8 @@ export default {
     return {
       songName: 'Never Going Back',
       artistName: 'The Score',
-      queue: [],
-      songUri: ''
+      queue: []
     }
-  },
-  mounted() {
-    this.$db.find({}, (err, docs) => {
-      console.log(docs[0]);
-      this.songUri = docs[0].dataUri;
-    });
   },
 }
 </script>
