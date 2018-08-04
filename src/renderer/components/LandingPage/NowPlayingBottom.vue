@@ -23,7 +23,8 @@
             el-button(icon="fas fa-random" plain circle).transparent-button
           el-col(:span="12").el-container.center-container
             el-button(icon="fas fa-backward" plain circle).transparent-button
-            el-button(icon="fas fa-play-circle fa-3x" plain circle type="primary").transparent-button
+            el-button(v-show="!isPaused" @click="playPause" icon="fas fa-pause-circle fa-3x" plain circle type="primary").transparent-button
+            el-button(v-show="isPaused" @click="playPause" icon="fas fa-play-circle fa-3x" plain circle type="primary").transparent-button
             el-button(icon="fas fa-forward" plain circle).transparent-button
           el-col(:span="6").el-container.left-container
             el-button(icon="fas fa-stop" plain circle).transparent-button
@@ -73,6 +74,7 @@ export default {
       }
       this.playedTime = Math.ceil(audioPlayer.currentTime);
       this.seekbarProgress = this.playedTime;
+      this.isPaused = audioPlayer.paused;
     }, 100);
 
     this.$db.find({}, (err, docs) => {
@@ -91,6 +93,17 @@ export default {
     refreshUI: function() {
       const audioPlayer = document.getElementById('audio-player');
       audioPlayer.volume = this.volume / 100;
+    },
+    playPause: function () {
+      const audioPlayer = document.getElementById('audio-player');
+      if(this.isPaused) {
+        audioPlayer.play();
+        this.isPaused = false;
+      }
+      else if(!this.isPaused) {
+        audioPlayer.pause();
+        this.isPaused = true;
+      }
     }
   },
   watch : {
