@@ -2,5 +2,6 @@
   "cSpell.words": [
     "sangeet",
     "submenu"
-  ]
+  ],
+  "eslint.enable": true
 }

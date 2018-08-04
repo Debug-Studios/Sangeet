@@ -40,9 +40,10 @@
 <script>
 import VueSlideBar from 'vue-slide-bar';
 import { setTimeout } from 'timers';
+import GlobalBus from './GlobalEventBus';
 
 export default {
-  components:{'vueSlideBar': VueSlideBar},
+  components: {'vueSlideBar': VueSlideBar},
   data(){
     return {
       coverArt: '',
@@ -57,12 +58,12 @@ export default {
     }
   },
   mounted() {
-    const audioPlayer = document.getElementById('audio-player');
-    audioPlayer.addEventListener('loadeddata', () => {
-      if(audioPlayer.readyState >= 2){
-        audioPlayer.play();
-      }
+
+    GlobalBus.$on('play-now', (song) => {
+      this.changeTrack(song);
     });
+
+    const audioPlayer = document.getElementById('audio-player');
 
     // Refresh UI every 100 ms
     setInterval(() => {
@@ -76,24 +77,14 @@ export default {
       this.seekbarProgress = this.playedTime;
       this.isPaused = audioPlayer.paused;
     }, 100);
-
-    this.$db.find({}, (err, docs) => {
-      this.songName = docs[1].title;
-      this.songArtist = docs[1].artist;
-      this.$uriCreator.generateDataUri(docs[1].path, (content) => {
-        this.currentSongUri = content;
-      });
-      this.$uriCreator.generateImageUri(docs[1].path, (image) => {
-        this.coverArt = image;
-      });
-      this.totalTime = Math.round(docs[1].duration);
-    });
   },
+
   methods: {
-    refreshUI: function() {
+    updateVolume: function() {
       const audioPlayer = document.getElementById('audio-player');
       audioPlayer.volume = this.volume / 100;
     },
+
     playPause: function () {
       const audioPlayer = document.getElementById('audio-player');
       if(this.isPaused) {
@@ -104,11 +95,33 @@ export default {
         audioPlayer.pause();
         this.isPaused = true;
       }
+    },
+
+    changeTrack: function (song) {
+      this.currentSongUri = '';
+      const audioPlayer = document.getElementById('audio-player');
+
+      if(audioPlayer === null) return;
+
+      audioPlayer.addEventListener('loadeddata', () => {
+        if(audioPlayer.readyState >= 2){
+          audioPlayer.play();
+        }
+      });
+      this.songName = song.title;
+      this.songArtist = song.artist;
+      this.$uriCreator.generateDataUri(song.path, (content) => {
+        this.currentSongUri = content;
+      });
+      this.$uriCreator.generateImageUri(song.path, (image) => {
+        this.coverArt = image;
+      });
+      this.totalTime = Math.round(song.duration);
     }
   },
   watch : {
     volume : function () {
-      this.refreshUI();
+      this.updateVolume();
     }
   }
 }

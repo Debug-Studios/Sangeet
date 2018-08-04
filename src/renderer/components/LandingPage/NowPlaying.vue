@@ -23,6 +23,9 @@
 </template>
 
 <script>
+
+import GlobalBus from './GlobalEventBus';
+
 export default {
   data () {
     return {
@@ -30,6 +33,15 @@ export default {
       artistName: 'The Score',
       queue: []
     }
+  },
+  mounted() {
+    this.$db.find({}, (err, docs) => {
+      GlobalBus.$emit('play-now', docs[2]);
+
+      setTimeout(() => {
+        GlobalBus.$emit('play-now', docs[1]);
+      }, 5000);
+    });
   },
 }
 </script>
