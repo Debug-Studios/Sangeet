@@ -27,7 +27,7 @@
             el-button(v-show="isPaused" @click="playPause" icon="fas fa-play-circle fa-3x" plain circle type="primary").transparent-button
             el-button(icon="fas fa-forward" plain circle).transparent-button
           el-col(:span="6").el-container.left-container
-            el-button(icon="fas fa-stop" plain circle).transparent-button
+            el-button(@click="changeTrack('')" icon="fas fa-stop" plain circle).transparent-button
 
         el-col(:span="6" style="align-items: center").el-container.center-container
           el-button(icon="fas fa-volume-up" plain circle).transparent-button
@@ -98,10 +98,16 @@ export default {
     },
 
     changeTrack: function (song) {
-      this.currentSongUri = '';
       const audioPlayer = document.getElementById('audio-player');
+      audioPlayer.pause();
+      this.currentSongUri = '';
 
       if(audioPlayer === null) return;
+
+      if(typeof(song) === 'string' && song === ''){
+        audioPlayer.pause();
+        return;
+      }
 
       audioPlayer.addEventListener('loadeddata', () => {
         if(audioPlayer.readyState >= 2){
