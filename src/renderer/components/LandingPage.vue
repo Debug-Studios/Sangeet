@@ -5,7 +5,7 @@
       el-col(:span="4")
         side-menu
 
-      el-col(:span="15" style="max-height: 90vh").el-main
+      el-col(:span="16" style="max-height: 90vh").el-main
         router-view(:db="db")
 
       el-col(:span="4" )

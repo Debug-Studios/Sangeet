@@ -1,6 +1,6 @@
 <template lang="pug">
   el-row.now-playing-bottom
-    el-col(:span="4" style="border-right: 1px solid #21272c")
+    el-col(:span="4")
       el-container.center-container(style="align-items:center")
         img.image(:src="coverArt" height="38px" width="38px")
         el-container(direction="vertical").song-container
@@ -149,7 +149,7 @@ export default {
   border: none;
   display: flex;
   align-items: center;
-  max-height: 9.99vh;
+  height: 12vh;
 }
 
 .seekbar-row {

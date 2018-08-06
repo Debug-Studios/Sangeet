@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
 .queue {
-  height: 90vh;
+  height: 88vh;
 
   .el-icon-menu.el-picture-menu {
     height: 2rem;
