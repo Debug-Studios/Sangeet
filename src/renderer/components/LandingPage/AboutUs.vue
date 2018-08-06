@@ -58,3 +58,5 @@
 }
   
 </style>
+
+// closes #8 but icons images to be added
