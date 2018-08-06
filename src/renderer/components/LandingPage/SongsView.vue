@@ -1,16 +1,18 @@
 <template lang="pug">
   el-row
-    el-col(:span="24" v-for="(song,index) in songs" :key="0")
+    el-col(:span="24" v-for="(song,index) in songs" :key="0" style="background-color:#181b20;margin-top:2px;")
       el-container
         el-col(:span='2')
-          el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex").transparent-button
-          el-button(icon='el-icon-loading' type="primary" plain circle v-show="index == currentSongIndex").transparent-button
-        el-col(:span='7')
+          el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
+          
+        el-col(:span='8')
           h5.song-name {{song.title}}
-        el-col(:span='7')
+        el-col(:span='6')
           h5.song-artist {{song.artist}}
-        el-col(:span='7')
+        el-col(:span='6')
           h5.song-artist {{song.album}}
+        el-col(:span='2')
+          el-button(icon='fa fa-plus' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
         
         
 </template>
@@ -29,7 +31,6 @@ export default {
 
   mounted() {
     this.$db.find({}, (err, docs) => {
-      console.log(docs);
       this.songs = docs;
     });
   },
@@ -46,11 +47,13 @@ export default {
 <style lang="scss" scoped>
 
   .song-name {
+    font-size: 16px;
     font-weight: 400;
-    margin-bottom: 0px;
+    
   }
 
   .song-artist {
+    font-size: 16px;
     font-weight: 200;
   }
 
