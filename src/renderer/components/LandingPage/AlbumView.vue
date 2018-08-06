@@ -1,6 +1,6 @@
 <template lang="pug">
   el-row
-    el-col(:span='4' v-for='(albumname, index) in albums' :key='0')
+    el-col(:span='4' v-for='(album, index) in albums' :key='0')
       el-card.card(:body-style="{ padding: '0px' }")
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:5px;color:#fafafa;')
@@ -12,8 +12,9 @@
               el-dropdown-item.dropdown-menu-item Add
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
-          div.bottom.clearfix
-            span {{albumname}}
+          router-link(to='/songsView')
+            div.bottom.clearfix
+              span {{album}}
             
 </template>
 
