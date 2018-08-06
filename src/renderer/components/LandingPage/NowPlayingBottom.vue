@@ -130,10 +130,8 @@ export default {
       this.$uriCreator.generateDataUri(song.path, (content) => {
         this.currentSongUri = content;
       });
-      this.$uriCreator.generateImageUri(song.path, (image) => {
-        this.coverArt = image;
-      });
       this.totalTime = Math.round(song.duration);
+      this.coverArt = song.coverArt;
     }
   },
   watch : {

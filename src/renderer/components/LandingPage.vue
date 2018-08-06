@@ -34,6 +34,18 @@ export default {
   async mounted () {
     this.$db.find({}, (err, docs) => {
       if(err) console.error('Error loading song database. Please restart!');
+
+
+      // Retrieve the cover art for all entries
+      docs.forEach((song, index) => {
+        this.$uriCreator.generateImageUri(song.path, (image) => {
+          Object.defineProperty(this.db[index], 'coverArt', {
+            value: image,
+            writable: false
+          })
+        });
+      });
+
       this.db = docs;
     });
   }
