@@ -2,11 +2,14 @@
   el-container(direction="vertical")
 
     el-row
-      el-col(:span="6")
+      el-col(:span="5")
         side-menu
 
-      el-col(:span="17" :offset='1' style="max-height: 90vh").el-main
+      el-col(:span="15" :offset='1' style="max-height: 90vh").el-main
         router-view
+
+      el-col(:span="2")
+        queue
 
     el-footer
       now-playing-bottom
@@ -16,10 +19,13 @@
 <script>
 import NowPlayingBottom from "./LandingPage/NowPlayingBottom.vue";
 import SideMenu from "./LandingPage/SideMenu.vue";
+import NowPlayingQueue from './LandingPage/NowPlayingQueue.vue';
 
 export default {
   name: "landing-page",
-  components: { "now-playing-bottom": NowPlayingBottom, "side-menu": SideMenu },
+  components: { "now-playing-bottom": NowPlayingBottom,
+    "side-menu": SideMenu,
+    "queue": NowPlayingQueue },
   data() {
     return {
       visible: false
