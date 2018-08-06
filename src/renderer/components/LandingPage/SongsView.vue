@@ -39,7 +39,7 @@ export default {
   methods: {
     playSong(index) {
       this.currentSongIndex = index;
-      GlobalBus.$emit('play-now', this.songs[index]);
+      GlobalBus.$emit('prepend-queue', this.songs[index]);
     },
     appendSongToQueue(index){
       GlobalBus.$emit('append-queue', this.songs[index]);
