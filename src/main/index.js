@@ -36,7 +36,7 @@ if (process.platform === 'darwin') {
   mainMenuTemplate.unshift({});
 }
 
-function createWindow() {
+async function createWindow() {
   /**
    * Initial window options
    */
