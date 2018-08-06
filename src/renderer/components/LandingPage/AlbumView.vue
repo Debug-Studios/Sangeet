@@ -1,10 +1,10 @@
 <template lang="pug">
   el-row
-    el-col(:span='4' v-for='albumName in albums' :key='0')
+    el-col(:span='4' v-for='albumname in albumSet' :key='0')
       el-card.card(:body-style="{ padding: '0px' }")
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:5px;color:#fafafa;')
-          span {{albumName.album}}
+          span {{albumname.album}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
               i.fa.fa-ellipsis-v 
@@ -22,12 +22,17 @@ export default {
   data() {
     return {
       albums: [],
+      albumSet: []
+
     };
   },
 
   mounted() {
-      this.$db.find({album : 1} , (err,docs) => {
+      this.$db.find({}, {album : 1} , (err,docs) => {
         console.log(docs);
+        this.albums = docs;
+        this.albumSet = new Set(this.albums);
+        console.log(this.albumSet);
 
       })
 
