@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       songs: [],
-      serialNumber: 0,
       currentSongIndex: -1
     }
   },

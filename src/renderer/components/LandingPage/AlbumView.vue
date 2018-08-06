@@ -26,13 +26,11 @@ export default {
   },
 
   mounted() {
-    this.$db.find({ }, (err,docs) => {
-      console.log(docs);
-      this.$db.find({docs: docs.album}, (err,alb) => {
-        console.log(alb);
-        this.albums = alb;
+      this.$db.find({album : 1} , (err,docs) => {
+        console.log(docs);
+
       })
-    })
+
   }
 }
 </script>
