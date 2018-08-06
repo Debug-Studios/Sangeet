@@ -1,6 +1,9 @@
 <template lang="pug">
   el-row.now-playing-bottom
-    el-col(:span="4" style="border-right: 1px solid #21272c")
+    el-row.seekbar-row
+          vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
+
+    el-col(:span="4")
       el-container.center-container(style="align-items:center")
         img.image(:src="coverArt" height="38px" width="38px")
         el-container(direction="vertical").song-container
@@ -11,9 +14,6 @@
 
 
     el-col(:span="20")
-      el-row.seekbar-row
-        vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
-
       el-row.media-controls
         el-col(:span="4")
           h5.time-text {{playedTime}} / {{totalTime}}
@@ -22,10 +22,10 @@
           el-col(:span="6").el-container.right-container
             el-button(icon="fas fa-random" plain circle).transparent-button
           el-col(:span="12").el-container.center-container
-            el-button(icon="fas fa-backward" plain circle).transparent-button
+            el-button(icon="fas fa-step-backward" plain circle).transparent-button
             el-button(v-show="!isPaused" @click="playPause" icon="fas fa-pause-circle fa-3x" plain circle type="primary").transparent-button
             el-button(v-show="isPaused" @click="playPause" icon="fas fa-play-circle fa-3x" plain circle type="primary").transparent-button
-            el-button(icon="fas fa-forward" plain circle).transparent-button
+            el-button(icon="fas fa-step-forward" plain circle).transparent-button
           el-col(:span="6").el-container.left-container
             el-button(@click="changeTrack('')" icon="fas fa-stop" plain circle).transparent-button
 
@@ -130,10 +130,8 @@ export default {
       this.$uriCreator.generateDataUri(song.path, (content) => {
         this.currentSongUri = content;
       });
-      this.$uriCreator.generateImageUri(song.path, (image) => {
-        this.coverArt = image;
-      });
       this.totalTime = Math.round(song.duration);
+      this.coverArt = song.coverArt;
     }
   },
   watch : {
@@ -151,7 +149,11 @@ export default {
   border: none;
   display: flex;
   align-items: center;
-  max-height: 9.99vh;
+  height: 12vh;
+
+  .transparent-button {
+    font-size: 1rem;
+  }
 }
 
 .seekbar-row {

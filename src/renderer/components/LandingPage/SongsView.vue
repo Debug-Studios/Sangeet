@@ -1,6 +1,6 @@
 <template lang="pug">
   el-row
-    el-col(:span="24" v-for="(song,index) in songs" :key="0" style="background-color:#181b20;margin-top:2px;")
+    el-row.song-row(v-for="(song,index) in songs" :key="0")
       el-container
         el-col(:span='2')
           el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
@@ -52,6 +52,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.song-row {
+  background-color: darken(#21272c, 1);
+  margin-top: 2px;
+}
+
 .song-name {
   font-size: 16px;
   font-weight: 400;
