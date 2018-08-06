@@ -119,6 +119,12 @@ export default {
           audioPlayer.play();
         }
       });
+
+      // Corrupted playing queue
+      if(song.title === undefined){
+        GlobalBus.$emit('play-next-song');
+        return;
+      }
       this.songName = song.title;
       this.songArtist = song.artist;
       this.$uriCreator.generateDataUri(song.path, (content) => {

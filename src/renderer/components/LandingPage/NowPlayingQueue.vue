@@ -31,6 +31,8 @@ export default {
   mounted() {
     this.currentSong = this.queue[0];
     GlobalBus.$on('prepend-queue', (song) => {
+      // Using unshift method on the array leads to duplicate keys error as Vue doesn't update
+      // the array indexes in its memory. So shift the whole queue one by one
       this.queue.unshift(song);
     });
 
@@ -44,7 +46,7 @@ export default {
   },
   watch: {
     queue: function () {
-      if(this.currentSong !== this.queue[0] && this.queue[0] !== null) {
+      if(this.currentSong !== this.queue[0]) {
         GlobalBus.$emit('play-now', this.queue[0]);
         this.currentSong = this.queue[0];
       }
