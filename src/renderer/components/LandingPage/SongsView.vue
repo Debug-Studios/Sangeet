@@ -4,15 +4,15 @@
       el-container
         el-col(:span='2')
           el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
-          
+        el-col(:span='2')
+          el-button(icon='fa fa-plus' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
         el-col(:span='8')
           h5.song-name {{song.title}}
         el-col(:span='6')
           h5.song-artist {{song.artist}}
         el-col(:span='6')
           h5.song-artist {{song.album}}
-        el-col(:span='2')
-          el-button(icon='fa fa-plus' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
+        
         
         
 </template>
