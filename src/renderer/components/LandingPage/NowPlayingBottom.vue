@@ -32,7 +32,7 @@
         el-col(:span="6" style="align-items: center").el-container.center-container
           el-button(icon="fas fa-volume-up" plain circle).transparent-button
           el-col(:span="24")
-            vueSlideBar(v-model="volume" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#30a9de' }")
+            vueSlideBar(v-model="volume" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fd6347' }")
 
 
 </template>
