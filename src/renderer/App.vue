@@ -57,4 +57,32 @@ body {
   margin: 10px;
   background-color: #21272c;
 }
+
+* {
+  /* Turn on custom 8px wide scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(228, 228, 228, 0);
+    -webkit-border-radius: 100px;
+  }
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(228, 228, 228, 0.09);
+  }
+
+  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+  ::-webkit-scrollbar-thumb:vertical {
+    background: rgba(228, 228, 228, 0.4);
+    -webkit-border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(
+      252,
+      95,
+      69,
+      0.91
+    ); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+  }
+}
 </style>

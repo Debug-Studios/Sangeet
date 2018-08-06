@@ -69,7 +69,8 @@
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
-    "vue-slide-bar": "^1.1.2"
+    "vue-slide-bar": "^1.1.2",
+    "vuebar": "^0.0.18"
   },
   "devDependencies": {
     "ajv": "^6.5.0",

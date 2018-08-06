@@ -10,6 +10,7 @@ import router from './router';
 
 import db from '../main/db/dataStore';
 import uriCreator from '../main/db/uriCreator';
+
 Vue.prototype.$db = db;
 Vue.prototype.$uriCreator = uriCreator;
 
