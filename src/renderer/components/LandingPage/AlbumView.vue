@@ -12,7 +12,7 @@
               el-dropdown-item.dropdown-menu-item Add
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
-          router-link(to='/songsView')
+          router-link(to= "/songsView")
             div.bottom.clearfix
               span {{album}}
             

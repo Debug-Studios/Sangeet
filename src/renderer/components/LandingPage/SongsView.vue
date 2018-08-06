@@ -14,12 +14,13 @@
         el-col(:span='6')
           h5.song-artist {{song.album}}
 
+
+
 </template>
 
 <script>
 
 import GlobalBus from './GlobalEventBus';
-
 export default {
   data() {
     return {
