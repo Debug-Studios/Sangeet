@@ -4,6 +4,7 @@
       el-container
         el-col(:span='2')
           el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
+          el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
         el-col(:span='2')
           el-button(icon='fa fa-plus' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
         el-col(:span='8')
@@ -38,7 +39,7 @@ export default {
   methods: {
     playSong(index) {
       this.currentSongIndex = index;
-      GlobalBus.$emit('play-now', this.songs[index]);
+      GlobalBus.$emit('append-queue', this.songs[index]);
     }
   }
 }
