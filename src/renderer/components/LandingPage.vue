@@ -8,9 +8,8 @@
       el-col(:span="15" style="max-height: 90vh").el-main
         router-view(:db="db")
 
-      el-col(:span="4")
+      el-col(:span="4" )
         queue
-
     el-footer
       now-playing-bottom
 
