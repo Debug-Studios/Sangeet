@@ -1,14 +1,14 @@
 <template lang="pug">
   el-container(direction="vertical")
 
-    el-row
-      el-col(:span="5")
+    el-row.row-bg(type="flex" justify="end")
+      el-col(:span="4")
         side-menu
 
       el-col(:span="15" :offset='1' style="max-height: 90vh").el-main
         router-view
 
-      el-col(:span="2")
+      el-col(:span="4")
         queue
 
     el-footer

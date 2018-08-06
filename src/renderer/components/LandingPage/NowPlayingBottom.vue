@@ -1,8 +1,8 @@
 <template lang="pug">
   el-row.now-playing-bottom
-    el-col(:span="5" style="border-right: 1px solid #21272c")
+    el-col(:span="4" style="border-right: 1px solid #21272c")
       el-container.center-container(style="align-items:center")
-        img.image(:src="coverArt" height="64px" width="64px")
+        img.image(:src="coverArt" height="38px" width="38px")
         el-container(direction="vertical").song-container
           h4.song-name {{songName}}
           h5.song-artist {{songArtist}}
@@ -10,7 +10,7 @@
           audio(:src="currentSongUri")#audio-player
 
 
-    el-col(:span="19")
+    el-col(:span="20")
       el-row.seekbar-row
         vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
 
