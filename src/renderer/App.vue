@@ -61,8 +61,7 @@ body {
 * {
   /* Turn on custom 8px wide scrollbar */
   ::-webkit-scrollbar {
-    width: 8px; /* 1px wider than Lion. */
-    /* This is more usable for users trying to click it. */
+    width: 8px;
     background-color: rgba(228, 228, 228, 0);
     -webkit-border-radius: 100px;
   }
@@ -73,15 +72,15 @@ body {
 
   /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
   ::-webkit-scrollbar-thumb:vertical {
-    background: rgba(228, 228, 228, 0.5);
+    background: rgba(228, 228, 228, 0.4);
     -webkit-border-radius: 100px;
   }
   ::-webkit-scrollbar-thumb:vertical:active {
     background: rgba(
-      228,
-      228,
-      228,
-      0.61
+      252,
+      95,
+      69,
+      0.91
     ); /* Some darker color when you click it */
     -webkit-border-radius: 100px;
   }
