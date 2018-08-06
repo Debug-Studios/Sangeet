@@ -24,19 +24,28 @@ import GlobalBus from './GlobalEventBus';
 export default {
   data () {
     return {
-      queue: []
+      queue: [],
+      currentSong: {}
     };
   },
   mounted() {
-    GlobalBus.$on('prepend-queue', (song) => {});
+    this.currentSong = queue[0];
+    GlobalBus.$on('prepend-queue', (song) => {
+      this.queue.unshift(song);
+      this.currentSong = queue[0];
+    });
 
-    GlobalBus.$on('append-queue', (song) => {});
+    GlobalBus.$on('append-queue', (song) => {
+      this.queue.push(song);
+      this.currentSong = queue[0];
+    });
   },
-  methods: {
-    handleOpen (key,keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {}
+  watch: {
+    queue: function () {
+      if(this.currentSong !== queue[0]) {
+        GlobalBus.$emit('play-now', queue[0]);
+      }
+    }
   }
 }
 </script>
