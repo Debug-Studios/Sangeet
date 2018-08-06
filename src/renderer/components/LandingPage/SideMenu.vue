@@ -1,30 +1,30 @@
 <template lang="pug">
   el-menu.el-menu-vertical(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#fc5f45').side-menu
-    router-link.plain(to='/nowPlaying')
+    router-link.plain-text(to='/nowPlaying')
       el-menu-item(index='1')
         i.item-margin.fa.fa-play
         span Now Playing
-    router-link.plain(to='/songsView')
+    router-link.plain-text(to='/songsView')
       el-menu-item(index='2')
         i.item-margin.fa.fa-music
         span Songs
-    router-link.plain(to='/artistView')
+    router-link.plain-text(to='/artistView')
       el-menu-item(index='3')
         i.item-margin.fa.fa-users
         span Artist
-    router-link.plain(to='/albumView')
+    router-link.plain-text(to='/albumView')
       el-menu-item(index='4')
         i.item-margin.fa.fa-images
         span Albums
-    router-link.plain(to='/playlistView')
+    router-link.plain-text(to='/playlistView')
       el-menu-item(index='5')
         i.item-margin.fa.fa-list-alt
         span Playlists
-    router-link.plain(to='/settings')
+    router-link.plain-text(to='/settings')
       el-menu-item.plain(index='6')
         i.item-margin.fa.fa-sliders-h
         span Settings
-    router-link.plain(to='/about')
+    router-link.plain-text(to='/about')
       el-menu-item(index='7')
         i.item-margin.fa.fa-info-circle
         span About Us
@@ -47,11 +47,6 @@
 
 .is-active {
   border-left: 10px solid;
-}
-
-.plain {
-  text-decoration: none;
-  color: #fff;
 }
 
 .item-margin {

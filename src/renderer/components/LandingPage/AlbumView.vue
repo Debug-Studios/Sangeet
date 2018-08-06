@@ -1,20 +1,20 @@
 <template lang="pug">
   el-row
-    el-col(:span='4' v-for='(album, index) in albums' :key='0')
-      el-card.card(:body-style="{ padding: '0px' }")
+    el-col(:span='5' v-for='(album, index) in albums' :key='0')
+      el-container.card
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
-        div(style='padding:5px;color:#fafafa;')
-          span.song-text Album
+        div(style='padding:1rem;color:#fafafa;')
+          router-link.plain-text(to= "/songsView" )
+            span {{album}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
               i.fa.fa-ellipsis-v 
             el-dropdown-menu.dropdown-menu(slot='dropdown')
-              el-dropdown-item.dropdown-menu-item Add
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
-          router-link(to= "/songsView")
-            div.bottom.clearfix
-              span {{album}}
+          div.bottom.clearfix
+              span {{totalSongs}} Songs
+          
             
 </template>
 
@@ -24,7 +24,8 @@ export default {
   data() {
     return {
       fetchAlbums: [],
-      albums: []
+      albums: [],
+      totalSongs: 0
     };
   },
 
@@ -49,15 +50,11 @@ export default {
 </script>
 
 <style scoped>
-
-  .song-text {
-    font-size: 14px;
-    color: #fafafa;
-  }
   
   .bottom {
     margin: 15px 0px 5px 0px; 
     line-height: 10px;
+    font-size: 12px;
   }
 
   .button {
@@ -68,6 +65,7 @@ export default {
   .image {
     width: 100%;
     display: block;
+    box-shadow: 5px 5px 15px  #1b1d1c; 
   }
 
   .clearfix:before,

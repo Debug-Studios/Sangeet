@@ -56,6 +56,17 @@ body {
 .card {
   margin: 10px;
   background-color: #21272c;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: 0.3s;
+  display: block; 
+  padding:5px;
+  
+}
+
+.plain-text {
+  text-decoration: none;
+  color: #fff;
 }
 
 * {
