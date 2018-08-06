@@ -25,14 +25,34 @@ export default {
     return {
       fetchAlbums: [],
       albums: [],
-      totalSongs: 0
+      totalSongs: 0,
+      currentSong: null,
+      albumArt: []
     };
   },
 
   mounted() {
+      console.log(this.db);
       for(let index=0;index< this.db.length;index++){
         this.fetchAlbums[index] = this.db[index].album;
+        this.albumArt[index] = this.db[index].coverArt;
       }
+      this.fetchAlbums.sort();
+      for(let i= 0; i< this.fetchAlbums.length; i++){
+        if(this.fetchAlbums[i] != this.currentSong){
+          if(this.totalSongs > 0) {
+            console.log(this.currentSong + "comes=" + this.totalSongs + "times");
+          }
+          this.currentSong = this.fetchAlbums[i];
+          this.totalSongs = 1;
+        }else{
+          this.totalSongs++;
+        }
+      }
+      if(this.totalSongs > 0){
+        console.log(this.currentSong + "comes= " + this.totalSongs);
+      }
+      console.log(this.fetchAlbums);
       let albumSet = new Set(this.fetchAlbums);
       albumSet.forEach(albumName => {
        if(!(albumName in this.albums)){
