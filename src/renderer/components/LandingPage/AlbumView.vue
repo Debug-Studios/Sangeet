@@ -1,10 +1,10 @@
 <template lang="pug">
   el-row
-    el-col(:span='4' v-for='index in 12' :key='0')
+    el-col(:span='4' v-for='albumName in albums' :key='0')
       el-card.card(:body-style="{ padding: '0px' }")
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:5px;color:#fafafa;')
-          span Album Name
+          span {{albumName.album}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
               i.fa.fa-ellipsis-v 
@@ -17,11 +17,22 @@
 </template>
 
 <script>
+import GlobalBus from './GlobalEventBus';
 export default {
   data() {
     return {
-      currentData : new Data()
+      albums: [],
     };
+  },
+
+  mounted() {
+    this.$db.find({ }, (err,docs) => {
+      console.log(docs);
+      this.$db.find({docs: docs.album}, (err,alb) => {
+        console.log(alb);
+        this.albums = alb;
+      })
+    })
   }
 }
 </script>

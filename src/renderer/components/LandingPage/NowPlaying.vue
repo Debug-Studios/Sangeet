@@ -35,13 +35,6 @@ export default {
     }
   },
   mounted() {
-    this.$db.find({}, (err, docs) => {
-      GlobalBus.$emit('play-now', docs[2]);
-
-      setTimeout(() => {
-        GlobalBus.$emit('play-now', docs[1]);
-      }, 5000);
-    });
   },
 }
 </script>
