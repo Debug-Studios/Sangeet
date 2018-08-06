@@ -12,7 +12,7 @@
 
     el-col(:span="18")
       el-row.seekbar-row
-        vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#30a9de' }")
+        vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
 
       el-row.media-controls
         el-col(:span="4")
@@ -32,7 +32,7 @@
         el-col(:span="6" style="align-items: center").el-container.center-container
           el-button(icon="fas fa-volume-up" plain circle).transparent-button
           el-col(:span="24")
-            vueSlideBar(v-model="volume" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#30a9de' }")
+            vueSlideBar(v-model="volume" :min="0" :max="100" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
 
 
 </template>
