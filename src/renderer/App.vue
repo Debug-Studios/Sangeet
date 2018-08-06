@@ -46,7 +46,7 @@ body {
 }
 
 .dropdown-menu {
-  background-color: #1b1d1c;
+  background-color: #21272c;
 }
 
 .dropdown-menu-item {
@@ -55,6 +55,6 @@ body {
 }
 .card {
   margin: 10px;
-  background-color: #1b1d1c;
+  background-color: #21272c;
 }
 </style>
