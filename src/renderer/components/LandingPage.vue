@@ -6,7 +6,7 @@
         side-menu
 
       el-col(:span="15" style="max-height: 90vh").el-main
-        router-view
+        router-view(:db="db")
 
       el-col(:span="4")
         queue
@@ -28,9 +28,16 @@ export default {
     "queue": NowPlayingQueue },
   data() {
     return {
-      visible: false
+      visible: false,
+      db: []
     };
   },
+  async mounted () {
+    this.$db.find({}, (err, docs) => {
+      if(err) console.error('Error loading song database. Please restart!');
+      this.db = docs;
+    });
+  }
 };
 </script>
 
