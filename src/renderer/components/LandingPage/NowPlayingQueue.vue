@@ -1,6 +1,6 @@
 <template lang="pug">
   el-menu(default-active="-1" background-color="#1b1d1c").queue
-    el-menu-item(v-for="(song, index) in queue" index="index" @click.capture="queueItemClick(index)")
+    el-menu-item(v-for="(song, index) in queue" index="index" :key="index" @click.capture="queueItemClick(index)")
       img(:src="song.coverArt").el-icon-menu.el-picture-menu
       span(slot="title") {{song.title}}
 

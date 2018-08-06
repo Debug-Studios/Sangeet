@@ -11,7 +11,7 @@
 
     el-col(:span="14")
       h2 Queue
-      el-row(v-for="queueItem in queue").queue-item
+      el-row(v-for="(queueItem, index) in queue" :key="index").queue-item
         el-container
           el-button(icon="fas fa-play" plain circle).transparent-button.el-col-2.queue-button
           el-button(icon="fas fa-plus" plain circle).transparent-button.el-col-2.queue-button
