@@ -13,9 +13,9 @@
           h5.song-artist {{song.artist}}
         el-col(:span='6')
           h5.song-artist {{song.album}}
-        
-        
-        
+
+
+
 </template>
 
 <script>
@@ -30,9 +30,7 @@ export default {
   },
 
   mounted() {
-    this.$db.find({}, (err, docs) => {
-      this.songs = docs;
-    });
+    this.songs = this.db;
   },
 
   methods: {
@@ -43,23 +41,25 @@ export default {
     appendSongToQueue(index){
       GlobalBus.$emit('append-queue', this.songs[index]);
     }
+  },
+  props: {
+    db: {
+      type: Array,
+      required: true
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.song-name {
+  font-size: 16px;
+  font-weight: 400;
+}
 
-  .song-name {
-    font-size: 16px;
-    font-weight: 400;
-    
-  }
-
-  .song-artist {
-    font-size: 16px;
-    font-weight: 200;
-  }
-
-
+.song-artist {
+  font-size: 16px;
+  font-weight: 200;
+}
 </style>
 

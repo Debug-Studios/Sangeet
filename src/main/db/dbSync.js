@@ -39,6 +39,9 @@ jetpack.listAsync(app.getPath('music')).then((list) => {
     const filePath = path.join(app.getPath('music'), file);
     if (supportedExtensions.indexOf(path.extname(file)) > -1) {
       const metaData = await mm.parseFile(filePath, { duration: true });
+      if (!metaData.common.title) {
+        metaData.common.title = file;
+      }
 
       await addMusicFileToDatabase(filePath, metaData);
     }
