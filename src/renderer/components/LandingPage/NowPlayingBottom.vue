@@ -76,6 +76,11 @@ export default {
       this.playedTime = Math.ceil(audioPlayer.currentTime);
       this.seekbarProgress = this.playedTime;
       this.isPaused = audioPlayer.paused;
+
+      if(this.playedTime >= this.totalTime){
+        this.seekbarProgress = 0;
+        GlobalBus.$emit('play-next-song');
+      }
     }, 100);
   },
 
