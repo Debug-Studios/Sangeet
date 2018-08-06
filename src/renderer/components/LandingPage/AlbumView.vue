@@ -1,10 +1,10 @@
 <template lang="pug">
   el-row
-    el-col(:span='4' v-for='albumName in albums' :key='0')
+    el-col(:span='4' v-for='(albumname, index) in albums' :key='0')
       el-card.card(:body-style="{ padding: '0px' }")
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:5px;color:#fafafa;')
-          span {{albumName.album}}
+          span.song-text Album
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
               i.fa.fa-ellipsis-v 
@@ -13,7 +13,8 @@
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
           div.bottom.clearfix
-            p.song-text Total Songs
+            span {{albumname}}
+            
 </template>
 
 <script>
@@ -21,18 +22,27 @@ import GlobalBus from './GlobalEventBus';
 export default {
   data() {
     return {
-      albums: [],
+      fetchAlbums: [],
+      albums: []
     };
   },
 
   mounted() {
-    this.$db.find({ }, (err,docs) => {
-      console.log(docs);
-      this.$db.find({docs: docs.album}, (err,alb) => {
-        console.log(alb);
-        this.albums = alb;
-      })
-    })
+      for(let index=0;index< this.db.length;index++){
+        this.fetchAlbums[index] = this.db[index].album;
+      }
+      let albumSet = new Set(this.fetchAlbums);
+      albumSet.forEach(albumName => {
+       if(!(albumName in this.albums)){
+         this.albums.push(albumName);
+       }
+      });
+  },
+  props: {
+    db: {
+      type: Array,
+      required: true
+    }
   }
 }
 </script>
@@ -45,7 +55,7 @@ export default {
   }
   
   .bottom {
-    margin-top: 13px;
+    margin: 15px 0px 5px 0px; 
     line-height: 10px;
   }
 
