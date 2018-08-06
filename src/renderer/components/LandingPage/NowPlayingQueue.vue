@@ -1,8 +1,8 @@
 <template lang="pug">
-  el-menu(default-active="1" @open="handleOpen" @close="handleClose" background-color="#1b1d1c").queue
-    el-menu-item(v-for="(item, index) in queue" index="index")
-      img(:src="item.picture").el-icon-menu.el-picture-menu
-      span(slot="title") {{item.name}}
+  el-menu(default-active="1" background-color="#1b1d1c").queue
+    el-menu-item(v-for="(song, index) in queue" index="index")
+      img(:src="song.picture").el-icon-menu.el-picture-menu
+      span(slot="title") {{song.title}}
 
 </template>
 
@@ -29,21 +29,26 @@ export default {
     };
   },
   mounted() {
-    this.currentSong = queue[0];
+    this.currentSong = this.queue[0];
     GlobalBus.$on('prepend-queue', (song) => {
+      // Using unshift method on the array leads to duplicate keys error as Vue doesn't update
+      // the array indexes in its memory. So shift the whole queue one by one
       this.queue.unshift(song);
-      this.currentSong = queue[0];
     });
 
     GlobalBus.$on('append-queue', (song) => {
       this.queue.push(song);
-      this.currentSong = queue[0];
+    });
+
+    GlobalBus.$on('play-next-song', () => {
+      this.queue.shift();
     });
   },
   watch: {
     queue: function () {
-      if(this.currentSong !== queue[0]) {
-        GlobalBus.$emit('play-now', queue[0]);
+      if(this.currentSong !== this.queue[0]) {
+        GlobalBus.$emit('play-now', this.queue[0]);
+        this.currentSong = this.queue[0];
       }
     }
   }
