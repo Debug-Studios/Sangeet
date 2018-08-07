@@ -1,5 +1,14 @@
 <template lang="pug">
   el-row
+    el-row.row-header(type='flex' justify='end')
+      el-col(:span='8')
+        h5.song-name Title
+      el-col(:span='6' )
+        h5.song-name Artist
+      el-col(:span='3')
+        h5.song-name Album  
+      el-col(:span='3')
+        h5.song-name Duration  
     el-row.song-row(v-for="(song,index) in songs" :key="0")
       el-container
         el-col(:span='2')
@@ -11,8 +20,10 @@
           h5.song-name {{song.title}}
         el-col(:span='6')
           h5.song-artist {{song.artist}}
-        el-col(:span='6')
+        el-col(:span='3')
           h5.song-artist {{song.album}}
+        el-col(:span='3')
+          h5.song-artist {{(song.duration/60).toFixed(2)}} min
 
 
 
@@ -25,12 +36,14 @@ export default {
   data() {
     return {
       songs: [],
-      currentSongIndex: -1
+      currentSongIndex: -1,
+      duration: 0
     }
   },
 
   mounted() {
     this.songs = this.db;
+    console.log(this.songs);
   },
 
   methods: {
@@ -40,6 +53,11 @@ export default {
     },
     appendSongToQueue(index){
       GlobalBus.$emit('append-queue', this.songs[index]);
+    },
+
+    sortSongs(){
+      this.songs.sort();
+      console.log(this.songs);
     }
   },
   props: {
@@ -57,9 +75,14 @@ export default {
   margin-top: 2px;
 }
 
+.row-header{
+  background-color: darken(#1f2429, 1);
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+}
+
 .song-name {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .song-artist {
