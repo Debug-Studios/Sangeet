@@ -13,7 +13,7 @@
       el-container
         el-col(:span='2')
           el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
-          el-button(icon='el-icon-loading' type="primary" plain circle v-show="index == currentSongIndex" style="margin-top:1rem;").transparent-button
+          img(src='http://www.animatedimages.org/data/media/102/animated-music-image-0543.gif' rel='icon' type='image/gif' v-show="index == currentSongIndex" style="margin:1rem 0px 0px 1rem;" )
         el-col(:span='2')
           el-button(icon='fa fa-plus' type="primary" plain circle @click='appendSongToQueue(index)' style="margin-top:1rem;").transparent-button
         el-col(:span='8')

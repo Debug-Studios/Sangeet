@@ -16,7 +16,7 @@
     el-col(:span="20")
       el-row.media-controls
         el-col(:span="4")
-          h5.time-text {{playedTime}} / {{totalTime}}
+          h5.time-text {{(playedTime/60).toFixed(2)}} / {{(totalTime/60).toFixed(2)}}
 
         el-col(:span="14" style="display:flex")
           el-col(:span="6").el-container.right-container
