@@ -1,7 +1,7 @@
 <template lang="pug">
   el-row
     el-col(:span='5' v-for='(artist, index) in artists' :key='0')
-      el-conatiner.card
+      el-container.card
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:1rem;color:#fafafa;')
           router-link.plain-text(to= "/songsView")
@@ -13,7 +13,7 @@
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
           div.bottom.clearfix
-            span {{totalSongs}} Songs
+            span {{songsCount[index]}} Songs
               
             
 </template>
@@ -25,7 +25,9 @@ export default {
     return {
       fetchArtist: [],
       artists: [],
-      totalSongs: 0
+      totalSongs: 0,
+      songsCount: [],
+      currentSong: null
     };
   },
 
@@ -33,8 +35,24 @@ export default {
       for(let i=0;i< this.db.length;i++){
         this.fetchArtist[i] = this.db[i].artist;
       }
+      this.fetchArtist.sort();
+
+      // Finding total number of Songs in Album.
+      for(let i= 0; i< this.fetchArtist.length; i++){
+          if(this.fetchArtist[i] != this.currentSong){
+            if(this.totalSongs > 0){
+              this.songsCount.push(this.totalSongs);
+            }
+            this.currentSong = this.fetchArtist[i];
+            this.totalSongs = 1;
+          }else{
+            this.totalSongs++;
+          }
+        }
+        if(this.totalSongs > 0){
+          this.songsCount.push(this.totalSongs);
+        }
       let artistSet = new Set(this.fetchArtist);
-      console.log(artistSet);
       artistSet.forEach(artistName => {
        if(!(artistName in this.artists)){
          this.artists.push(artistName);

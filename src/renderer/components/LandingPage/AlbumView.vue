@@ -25,6 +25,7 @@ export default {
       albums: [],
       songsCount: [],
       currentSong: null,
+      totalSongs: 0
     };
   },
 
