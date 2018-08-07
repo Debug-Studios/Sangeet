@@ -13,7 +13,7 @@
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
           div.bottom.clearfix
-            span {{totalSongs}} Songs
+            span {{songsCount[index]}} Songs
 </template>
 
 <script>
@@ -23,37 +23,38 @@ export default {
     return {
       fetchAlbums: [],
       albums: [],
-      totalSongs: 0,
+      songsCount: [],
       currentSong: null,
-      albumArt: []
     };
   },
 
   mounted() {
-      for(let index=0;index< this.db.length;index++){
-        this.fetchAlbums[index] = this.db[index].album;
-        this.albumArt[index] = this.db[index].coverArt;
+      for(let i=0;i< this.db.length;i++){
+        this.fetchAlbums[i] = this.db[i].album;
+        //this.albumArt[index] = this.db[index].coverArt;
       }
+      this.fetchAlbums.sort();
+
+      // Finding total number of Songs in Album.
+      for(let i= 0; i< this.fetchAlbums.length; i++){
+          if(this.fetchAlbums[i] != this.currentSong){
+            if(this.totalSongs > 0){
+              this.songsCount.push(this.totalSongs);
+            }
+            this.currentSong = this.fetchAlbums[i];
+            this.totalSongs = 1;
+          }else{
+            this.totalSongs++;
+          }
+        }
+        if(this.totalSongs > 0){
+          this.songsCount.push(this.totalSongs);
+        }
       let albumSet = new Set(this.fetchAlbums);
       albumSet.forEach(albumName => {
+        let count = 0;
        if(!(albumName in this.albums)){
          this.albums.push(albumName);
-        //  this.fetchAlbums.sort();
-        // for(let i= 0; i< this.fetchAlbums.length; i++){
-        //   if(this.fetchAlbums[i] != this.currentSong){
-        //     if(this.totalSongs > 0){
-        //       console.log(this.currentSong + "comes= " + this.totalSongs);
-        //       this.newNumb = this.totalSongs;
-        //     }
-        //     this.currentSong = this.fetchAlbums[i];
-        //     this.totalSongs = 1;
-        //   }else{
-        //     this.totalSongs++;
-        //   }
-        // }
-        // if(this.totalSongs > 0){
-        //   console.log(this.currentSong + "comes= " + this.totalSongs);
-        // }
        }
       });
   },
