@@ -15,6 +15,12 @@
     width: 2rem;
   }
 
+  .el-menu-item {
+    padding-left: 1rem !important;
+    overflow: hidden;
+    white-space: normal;
+  }
+
   .el-menu-item.is-active {
     border-left: 0;
   }
@@ -36,8 +42,6 @@ export default {
     this.currentSong = this.queue[0];
     let index = 0; // eslint-disable-line
     GlobalBus.$on('prepend-queue', async (song) => {
-      // Using unshift method on the array leads to duplicate keys error as Vue doesn't update
-      // the array indexes in its memory. So shift the whole queue one by one
       index = this.queue.unshift(song);
     });
 
