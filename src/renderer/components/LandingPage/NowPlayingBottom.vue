@@ -1,7 +1,5 @@
 <template lang="pug">
   el-row.now-playing-bottom
-    el-row.seekbar-row
-          vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
 
     el-col(:span="4")
       el-container.center-container(style="align-items:center")
@@ -14,6 +12,9 @@
 
 
     el-col(:span="20")
+      el-row.seekbar-row
+        vueSlideBar(v-model="seekbarProgress" :min="0" :max="totalTime" :showTooltip="false" style="padding-top: 0 !important" :processStyle="{ backgroundColor: '#fc5f45' }")
+
       el-row.media-controls
         el-col(:span="4")
           h5.time-text {{(playedTime/60).toFixed(2)}} / {{(totalTime/60).toFixed(2)}}
@@ -67,7 +68,7 @@ export default {
     setInterval(() => {
       // Seek
       if (this.seekbarProgress > (this.playedTime + 2) ||
-       this.seekbarProgress < (this.playedTime - 2)) {
+        this.seekbarProgress < (this.playedTime - 2)) {
         audioPlayer.currentTime = this.seekbarProgress;
       }
       this.playedTime = Math.ceil(audioPlayer.currentTime);
