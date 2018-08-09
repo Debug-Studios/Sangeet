@@ -26,20 +26,19 @@
 import GlobalBus from './GlobalEventBus';
 
 export default {
-  data () {
+  data() {
     return {
       queue: [],
-      currentSong: {}
+      currentSong: {},
     };
   },
   mounted() {
     this.currentSong = this.queue[0];
-    let index = 0;
+    let index = 0; // eslint-disable-line
     GlobalBus.$on('prepend-queue', async (song) => {
       // Using unshift method on the array leads to duplicate keys error as Vue doesn't update
       // the array indexes in its memory. So shift the whole queue one by one
       index = this.queue.unshift(song);
-
     });
 
     GlobalBus.$on('append-queue', (song) => {
@@ -49,26 +48,25 @@ export default {
     GlobalBus.$on('play-next-song', () => {
       this.queue.shift();
     });
-
   },
   methods: {
     // Plays the clicked item in the queue
-    queueItemClick (queueIndex) {
+    queueItemClick(queueIndex) {
       // Removes the song from the array.
       const song = this.queue.splice(queueIndex, 1)[0];
       GlobalBus.$emit('prepend-queue', song);
-    }
+    },
   },
   watch: {
-    queue: function () {
+    queue() {
       // If the currently playing song is not at the top of the queue
       // then play the song on top of the queue. (Useful for prepend)
-      if(this.currentSong !== this.queue[0]) {
+      if (this.currentSong !== this.queue[0]) {
         GlobalBus.$emit('play-now', this.queue[0]);
         this.currentSong = this.queue[0];
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 

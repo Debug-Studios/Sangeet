@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import GlobalBus from './GlobalEventBus';
+// import GlobalBus from './GlobalEventBus';
 export default {
   data() {
     return {
@@ -25,77 +25,74 @@ export default {
       albums: [],
       songsCount: [],
       currentSong: null,
-      totalSongs: 0
+      totalSongs: 0,
     };
   },
 
   mounted() {
-      for(let i=0;i< this.db.length;i++){
-        this.fetchAlbums[i] = this.db[i].album;
-        //this.albumArt[index] = this.db[index].coverArt;
-      }
-      this.fetchAlbums.sort();
+    for (let i = 0; i < this.db.length; i += 1) {
+      this.fetchAlbums[i] = this.db[i].album;
+      // this.albumArt[index] = this.db[index].coverArt;
+    }
+    this.fetchAlbums.sort();
 
-      // Finding total number of Songs in Album.
-      for(let i= 0; i< this.fetchAlbums.length; i++){
-          if(this.fetchAlbums[i] != this.currentSong){
-            if(this.totalSongs > 0){
-              this.songsCount.push(this.totalSongs);
-            }
-            this.currentSong = this.fetchAlbums[i];
-            this.totalSongs = 1;
-          }else{
-            this.totalSongs++;
-          }
-        }
-        if(this.totalSongs > 0){
+    // Finding total number of Songs in Album.
+    for (let i = 0; i < this.fetchAlbums.length; i += 1) {
+      if (this.fetchAlbums[i] !== this.currentSong) {
+        if (this.totalSongs > 0) {
           this.songsCount.push(this.totalSongs);
         }
-      let albumSet = new Set(this.fetchAlbums);
-      albumSet.forEach(albumName => {
-        let count = 0;
-       if(!(albumName in this.albums)){
-         this.albums.push(albumName);
-       }
-      });
+        this.currentSong = this.fetchAlbums[i];
+        this.totalSongs = 1;
+      } else {
+        this.totalSongs += 1;
+      }
+    }
+    if (this.totalSongs > 0) {
+      this.songsCount.push(this.totalSongs);
+    }
+    const albumSet = new Set(this.fetchAlbums);
+    albumSet.forEach((albumName) => {
+      if (!(albumName in this.albums)) {
+        this.albums.push(albumName);
+      }
+    });
   },
   props: {
     db: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>
-  
-  .bottom {
-    margin: 15px 0px 5px 0px; 
-    line-height: 10px;
-    font-size: 12px;
-  }
+.bottom {
+  margin: 15px 0px 5px 0px;
+  line-height: 10px;
+  font-size: 12px;
+}
 
-  .button {
-    padding: 5px;
-    float: right;
-  }
+.button {
+  padding: 5px;
+  float: right;
+}
 
-  .image {
-    width: 100%;
-    display: block;
-    box-shadow: 5px 5px 15px  #1b1d1c; 
-  }
+.image {
+  width: 100%;
+  display: block;
+  box-shadow: 5px 5px 15px #1b1d1c;
+}
 
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
-  }
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
 
+.clearfix:after {
+  clear: both;
+}
 </style>
 

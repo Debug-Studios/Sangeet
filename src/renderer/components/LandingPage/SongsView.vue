@@ -37,8 +37,8 @@ export default {
     return {
       songs: [],
       currentSongIndex: -1,
-      duration: 0
-    }
+      duration: 0,
+    };
   },
 
   mounted() {
@@ -51,22 +51,22 @@ export default {
       this.currentSongIndex = index;
       GlobalBus.$emit('prepend-queue', this.songs[index]);
     },
-    appendSongToQueue(index){
+    appendSongToQueue(index) {
       GlobalBus.$emit('append-queue', this.songs[index]);
     },
 
-    sortSongs(){
+    sortSongs() {
       this.songs.sort();
       console.log(this.songs);
-    }
+    },
   },
   props: {
     db: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

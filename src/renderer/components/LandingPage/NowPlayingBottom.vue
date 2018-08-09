@@ -39,12 +39,11 @@
 
 <script>
 import VueSlideBar from 'vue-slide-bar';
-import { setTimeout } from 'timers';
 import GlobalBus from './GlobalEventBus';
 
 export default {
-  components: {'vueSlideBar': VueSlideBar},
-  data(){
+  components: { vueSlideBar: VueSlideBar },
+  data() {
     return {
       coverArt: '',
       songName: '',
@@ -54,11 +53,10 @@ export default {
       volume: 80,
       seekbarProgress: 10,
       currentSongUri: '',
-      isPaused: false
-    }
+      isPaused: false,
+    };
   },
   mounted() {
-
     GlobalBus.$on('play-now', (song) => {
       this.changeTrack(song);
     });
@@ -68,16 +66,15 @@ export default {
     // Refresh UI every 100 ms
     setInterval(() => {
       // Seek
-      if(this.seekbarProgress > (this.playedTime + 2) ||
-       this.seekbarProgress < (this.playedTime - 2))
-      {
+      if (this.seekbarProgress > (this.playedTime + 2) ||
+       this.seekbarProgress < (this.playedTime - 2)) {
         audioPlayer.currentTime = this.seekbarProgress;
       }
       this.playedTime = Math.ceil(audioPlayer.currentTime);
       this.seekbarProgress = this.playedTime;
       this.isPaused = audioPlayer.paused;
 
-      if(this.playedTime >= this.totalTime){
+      if (this.playedTime >= this.totalTime) {
         this.seekbarProgress = 0;
         GlobalBus.$emit('play-next-song');
       }
@@ -85,43 +82,42 @@ export default {
   },
 
   methods: {
-    updateVolume: function() {
+    updateVolume() {
       const audioPlayer = document.getElementById('audio-player');
       audioPlayer.volume = this.volume / 100;
     },
 
-    playPause: function () {
+    playPause() {
       const audioPlayer = document.getElementById('audio-player');
-      if(this.isPaused) {
+      if (this.isPaused) {
         audioPlayer.play();
         this.isPaused = false;
-      }
-      else if(!this.isPaused) {
+      } else if (!this.isPaused) {
         audioPlayer.pause();
         this.isPaused = true;
       }
     },
 
-    changeTrack: function (song) {
+    changeTrack(song) {
       const audioPlayer = document.getElementById('audio-player');
       audioPlayer.pause();
       this.currentSongUri = '';
 
-      if(audioPlayer === null) return;
+      if (audioPlayer === null) return;
 
-      if(typeof(song) === 'string' && song === ''){
+      if (typeof (song) === 'string' && song === '') {
         audioPlayer.pause();
         return;
       }
 
       audioPlayer.addEventListener('loadeddata', () => {
-        if(audioPlayer.readyState >= 2){
+        if (audioPlayer.readyState >= 2) {
           audioPlayer.play();
         }
       });
 
       // Corrupted playing queue
-      if(song.title === undefined){
+      if (song.title === undefined) {
         GlobalBus.$emit('play-next-song');
         return;
       }
@@ -132,14 +128,14 @@ export default {
       });
       this.totalTime = Math.round(song.duration);
       this.coverArt = song.coverArt;
-    }
+    },
   },
-  watch : {
-    volume : function () {
+  watch: {
+    volume() {
       this.updateVolume();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 

@@ -8,18 +8,18 @@
             span {{artist}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
-              i.fa.fa-ellipsis-v 
+              i.fa.fa-ellipsis-v
             el-dropdown-menu.dropdown-menu(slot='dropdown')
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
           div.bottom.clearfix
             span {{songsCount[index]}} Songs
-              
-            
+
+
 </template>
 
 <script>
-import GlobalBus from './GlobalEventBus';
+// import GlobalBus from './GlobalEventBus';
 export default {
   data() {
     return {
@@ -27,77 +27,74 @@ export default {
       artists: [],
       totalSongs: 0,
       songsCount: [],
-      currentSong: null
+      currentSong: null,
     };
   },
 
   mounted() {
-      for(let i=0;i< this.db.length;i++){
-        this.fetchArtist[i] = this.db[i].artist;
-      }
-      this.fetchArtist.sort();
+    for (let i = 0; i < this.db.length; i += 1) {
+      this.fetchArtist[i] = this.db[i].artist;
+    }
+    this.fetchArtist.sort();
 
-      // Finding total number of Songs in Album.
-      for(let i= 0; i< this.fetchArtist.length; i++){
-          if(this.fetchArtist[i] != this.currentSong){
-            if(this.totalSongs > 0){
-              this.songsCount.push(this.totalSongs);
-            }
-            this.currentSong = this.fetchArtist[i];
-            this.totalSongs = 1;
-          }else{
-            this.totalSongs++;
-          }
-        }
-        if(this.totalSongs > 0){
+    // Finding total number of Songs in Album.
+    for (let i = 0; i < this.fetchArtist.length; i += 1) {
+      if (this.fetchArtist[i] !== this.currentSong) {
+        if (this.totalSongs > 0) {
           this.songsCount.push(this.totalSongs);
         }
-      let artistSet = new Set(this.fetchArtist);
-      artistSet.forEach(artistName => {
-       if(!(artistName in this.artists)){
-         this.artists.push(artistName);
-       }
-      });
+        this.currentSong = this.fetchArtist[i];
+        this.totalSongs = 1;
+      } else {
+        this.totalSongs += 1;
+      }
+    }
+    if (this.totalSongs > 0) {
+      this.songsCount.push(this.totalSongs);
+    }
+    const artistSet = new Set(this.fetchArtist);
+    artistSet.forEach((artistName) => {
+      if (!(artistName in this.artists)) {
+        this.artists.push(artistName);
+      }
+    });
   },
   props: {
     db: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 
 <style scoped>
+.bottom {
+  margin: 15px 0px 5px 0px;
+  line-height: 10px;
+  font-size: 12px;
+}
 
-  .bottom {
-    margin: 15px 0px 5px 0px; 
-    line-height: 10px;
-    font-size: 12px;
-  }
+.button {
+  padding: 1px;
+  float: right;
+}
 
-  .button {
-    padding: 1px;
-    float: right;
-  }
+.image {
+  width: 100%;
+  display: block;
+  box-shadow: 5px 5px 15px #1b1d1c;
+}
 
-  .image {
-    width: 100%;
-    display: block;
-    box-shadow: 5px 5px 15px  #1b1d1c; 
-  }
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
 
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
-  }
-
-
+.clearfix:after {
+  clear: both;
+}
 </style>
 

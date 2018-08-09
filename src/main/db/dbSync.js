@@ -3,7 +3,7 @@
 import DataStore from 'nedb';
 import jetpack from 'fs-jetpack';
 import path from 'path';
-import { app } from 'electron';
+import { app } from 'electron'; // eslint-disable-line
 // https://github.com/Borewit/music-metadata
 const mm = require('music-metadata');
 

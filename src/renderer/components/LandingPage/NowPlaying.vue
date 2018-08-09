@@ -24,19 +24,19 @@
 
 <script>
 
-import GlobalBus from './GlobalEventBus';
+// import GlobalBus from './GlobalEventBus';
 
 export default {
-  data () {
+  data() {
     return {
       songName: 'Never Going Back',
       artistName: 'The Score',
-      queue: []
-    }
+      queue: [],
+    };
   },
   mounted() {
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

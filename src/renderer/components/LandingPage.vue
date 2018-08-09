@@ -17,24 +17,24 @@
 </template>
 
 <script>
-import NowPlayingBottom from "./LandingPage/NowPlayingBottom.vue";
-import SideMenu from "./LandingPage/SideMenu.vue";
+import NowPlayingBottom from './LandingPage/NowPlayingBottom.vue';
+import SideMenu from './LandingPage/SideMenu.vue';
 import NowPlayingQueue from './LandingPage/NowPlayingQueue.vue';
 
 export default {
-  name: "landing-page",
-  components: { "now-playing-bottom": NowPlayingBottom,
-    "side-menu": SideMenu,
-    "queue": NowPlayingQueue },
+  name: 'landing-page',
+  components: { 'now-playing-bottom': NowPlayingBottom,
+    'side-menu': SideMenu,
+    queue: NowPlayingQueue },
   data() {
     return {
       visible: false,
-      db: []
+      db: [],
     };
   },
-  async mounted () {
+  async mounted() {
     this.$db.find({}, (err, docs) => {
-      if(err) console.error('Error loading song database. Please restart!');
+      if (err) console.error('Error loading song database. Please restart!');
 
 
       // Retrieve the cover art for all entries
@@ -42,14 +42,14 @@ export default {
         this.$uriCreator.generateImageUri(song.path, (image) => {
           Object.defineProperty(this.db[index], 'coverArt', {
             value: image,
-            writable: false
-          })
+            writable: false,
+          });
         });
       });
 
       this.db = docs;
     });
-  }
+  },
 };
 </script>
 

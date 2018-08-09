@@ -7,8 +7,8 @@
 <script>
 import LandingPage from './components/LandingPage.vue';
 export default {
-  name: "sangeet",
-  components: {'landingPage': LandingPage},
+  name: 'sangeet',
+  components: { landingPage: LandingPage },
   mounted() {
   },
 };
@@ -59,9 +59,8 @@ body {
   border-radius: 4px;
   overflow: hidden;
   transition: 0.3s;
-  display: block; 
-  padding:5px;
-  
+  display: block;
+  padding: 5px;
 }
 
 .plain-text {

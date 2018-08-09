@@ -1,25 +1,23 @@
 # sangeet
 
-> A Free and cross platform music player for Windows, Linux and MacOS
+> A cross platform music player
 
 #### Build Setup
 
-```bash
+``` bash
 # install dependencies
-yarn
+npm install
 
 # serve with hot reload at localhost:9080
-yarn run dev
+npm run dev
 
 # build electron application for production
-yarn build
-
-# run unit tests
-yarn test
+npm run build
 
 
 # lint all JS/Vue component files in `src/`
-yarn run lint
+npm run lint
+
 ```
 
 ---

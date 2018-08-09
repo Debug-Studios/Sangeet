@@ -2,7 +2,7 @@
 
 import path from 'path';
 import DataStore from 'nedb';
-import { remote } from 'electron';
+import { remote } from 'electron'; // eslint-disable-line
 
 export default new DataStore({
   autoload: true,
