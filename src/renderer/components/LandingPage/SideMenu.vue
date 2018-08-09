@@ -1,5 +1,7 @@
 <template lang="pug">
   el-menu.el-menu-vertical(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#fc5f45').side-menu
+    h1.app-title SANGEET
+    h3.app-subtitle By Debug Studios
     router-link.plain-text(to='/nowPlaying')
       el-menu-item(index='1')
         i.item-margin.fa.fa-play
@@ -34,12 +36,25 @@
     //   i.el-icon-upload
     //   .el-upload__text Drag and Drop Next Songs
 
-
-
-
 </template>
 
 <style lang="scss">
+.app-title {
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 0.6rem;
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+.app-subtitle {
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  margin-top: 0.5rem;
+}
+
 .el-menu-vertical {
   min-height: 88vh;
   border: 0;
