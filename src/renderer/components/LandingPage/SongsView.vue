@@ -70,24 +70,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.song-row {
-  background-color: darken(#21272c, 1);
-  margin-top: 2px;
-}
-
-.row-header{
+.row-header {
   background-color: darken(#1f2429, 1);
   border-bottom: 1px solid rgba(250, 250, 250, 0.5);
-}
-
-.song-name {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.song-artist {
-  font-size: 16px;
-  font-weight: 200;
 }
 </style>
 
