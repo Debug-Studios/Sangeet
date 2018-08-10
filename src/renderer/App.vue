@@ -95,4 +95,19 @@ body {
     -webkit-border-radius: 100px;
   }
 }
+
+.song-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.song-artist {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.song-row {
+  background-color: darken(#21272c, 1);
+  margin-top: 2px;
+}
 </style>
