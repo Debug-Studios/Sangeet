@@ -1,8 +1,11 @@
 <template lang="pug">
   el-container(style="display:block")
     el-container.artist-cover-image
-      el-container.artist-image
+      div.artist-image
         img.image(src='https://img4.nickiswift.com/img/gallery/why-does-eminem-look-so-different-now/run-eminem-run-1519412300.jpg' )
+      div.artist-name
+        span EMINEM
+        span.song-artist Total Songs 200
     el-container.song-container(style="display:block")
       el-row.song-row(v-for="(song,index) in songs" :key="0")
             el-container
@@ -63,6 +66,13 @@ export default {
   top: 14rem;
   box-shadow: 5px 5px 15px #1b1d1c;
   border: 1px solid #fafafa;
+}
+
+.artist-name {
+  position: absolute;
+  left: 14.5rem;
+  top: 19.5rem;
+  display: grid;
 }
 
 .image {

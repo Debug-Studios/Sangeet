@@ -24,7 +24,7 @@
       el-menu-item.plain(index='6')
         i.item-margin.fa.fa-sliders-h
         span Settings
-    router-link.plain-text(to='/album')
+    router-link.plain-text(to='/about')
       el-menu-item(index='7')
         i.item-margin.fa.fa-info-circle
         span About Us
