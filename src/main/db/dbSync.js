@@ -39,18 +39,12 @@ async function addMusicFileToDatabase(filePath, fileMetaData) {
 
 // Recursively goes through a folder, retrieves the metadata of files and adds them to database.
 async function listMusicFiles() {
-  if (!settings.has('scanPaths')) {
-    settings.set('scanPaths', [app.getPath('music')]);
-  }
   let syncPaths = settings.get('scanPaths');
-  if (syncPaths.length <= 0) {
-    settings.set('scanPaths', [app.getPath('music')]);
-  }
   syncPaths = settings.get('scanPaths');
   syncPaths.forEach((syncPath) => {
     jetpack.listAsync(syncPath).then((list) => {
       list.forEach(async (file) => {
-        const filePath = path.join(app.getPath('music'), file);
+        const filePath = path.join(syncPath, file);
         if (supportedExtensions.indexOf(path.extname(file)) > -1) {
           const metaData = await mm.parseFile(filePath, { duration: true, native: true });
           // Files with no metadata have no titles.
@@ -67,10 +61,19 @@ async function listMusicFiles() {
 
 // Delete database records of files which are not available at their paths.
 async function deleteBrokenRecords() {
+  if (!settings.has('scanPaths')) {
+    settings.set('scanPaths', [app.getPath('music')]);
+  }
+  let syncPaths = settings.get('scanPaths');
+  if (syncPaths.length <= 0) {
+    settings.set('scanPaths', [app.getPath('music')]);
+  }
+  syncPaths = settings.get('scanPaths');
+  console.log(syncPaths);
   db.find({}, (err, docs) => {
     docs.forEach(async (doc) => {
       const exists = await jetpack.existsAsync(doc.path);
-      if (!exists) {
+      if (!exists || syncPaths.indexOf(doc.path) < 0) {
         db.remove({ _id: doc._id });
       }
     });
