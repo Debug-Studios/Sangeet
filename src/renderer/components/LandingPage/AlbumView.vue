@@ -1,6 +1,6 @@
 <template lang="pug">
   el-row
-    el-col(:span='5' v-for='(album, index) in albums' :key='0')
+    el-col(:span='5' v-for='(album, index) in albums')
       el-container.card
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:1rem;color:#fafafa;')
@@ -26,13 +26,13 @@ export default {
       albumSongsCount: [],
       currentSong: null,
       totalAlbumSongs: 0,
+      albumCovers: [],
     };
   },
 
   mounted() {
     for (let i = 0; i < this.db.length; i += 1) {
       this.fetchAlbums[i] = this.db[i].album;
-      // this.albumArt[index] = this.db[index].coverArt;
     }
     this.fetchAlbums.sort();
 
@@ -57,6 +57,7 @@ export default {
         this.albums.push(albumName);
       }
     });
+    console.log(albumSet);
   },
   props: {
     db: {

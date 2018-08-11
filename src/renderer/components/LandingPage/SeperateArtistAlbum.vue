@@ -10,10 +10,10 @@
       el-row.song-row(v-for="(filteredSong,index) in filteredSongs")
             el-container
               el-col(:span='2')
-                el-button(icon='fa fa-play' type="primary" plain circle style="margin-top:1rem;").transparent-button
+                el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' style="margin-top:1rem;").transparent-button
                 //- img(src='http://www.animatedimages.org/data/media/102/animated-music-image-0543.gif' rel='icon' type='image/gif' v-show="index == currentSongIndex" style="margin:1rem 0px 0px 1rem;" )
               el-col(:span='2')
-                el-button(icon='fa fa-plus' type="primary" plain circle style="margin-top:1rem;").transparent-button
+                el-button(icon='fa fa-plus' type="primary" plain circle @click='appendSongToQueue(index)' style="margin-top:1rem;").transparent-button
               el-col(:span='8')
                 h5.song-name {{filteredSong.title}}
               el-col(:span='6')
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-
+import GlobalBus from './GlobalEventBus';
 export default {
 
   data() {
@@ -49,6 +49,15 @@ export default {
     if (this.allAlbums.includes(this.songDetail)) {
       this.filteredSongs = this.db.filter(selectsong => selectsong.album === this.songDetail);
     }
+  },
+  methods: {
+    playSong(index) {
+      GlobalBus.$emit('prepend-queue', this.filteredSongs[index]);
+    },
+    appendSongToQueue(index) {
+      GlobalBus.$emit('append-queue', this.filteredSongs[index]);
+    },
+
   },
   props: {
     db: {
