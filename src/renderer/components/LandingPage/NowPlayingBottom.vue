@@ -49,7 +49,7 @@ export default {
       coverArt: '',
       songName: '',
       songArtist: '',
-      totalTime: 1,
+      totalTime: 10,
       playedTime: 0,
       volume: 80,
       seekbarProgress: 10,
