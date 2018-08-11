@@ -1,10 +1,10 @@
 <template lang="pug">
   el-row
-    el-col(:span='5' v-for='(artist,index) in artists' :key='0')
+    el-col(:span='5' v-for='(artist,index) in artists' :key='artist')
       el-container.card
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:1rem;color:#fafafa;')
-          router-link.plain-text(to = `/songs/${artist}`)
+          router-link.plain-text(to = `/songs/EMINEM`)
             span {{artist}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
