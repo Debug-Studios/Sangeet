@@ -31,6 +31,8 @@ async function createWindow() {
    */
 
   let isMinimized = false;
+  let quitCompletely = false;
+
   mainWindow = new BrowserWindow({
     height: 768,
     useContentSize: true,
@@ -48,6 +50,7 @@ async function createWindow() {
     {
       label: 'Quit',
       click: () => {
+        quitCompletely = true;
         app.quit();
       },
     },
@@ -78,6 +81,14 @@ async function createWindow() {
 
   mainWindow.on('show', () => {
     tray.setHighlightMode('always');
+  });
+
+  mainWindow.on('close', (event) => {
+    if (!quitCompletely) {
+      event.preventDefault();
+      mainWindow.hide();
+      isMinimized = true;
+    }
   });
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(mainMenuTemplate));
