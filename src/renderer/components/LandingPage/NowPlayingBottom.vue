@@ -135,6 +135,18 @@ export default {
       });
       this.totalTime = Math.round(song.duration);
       this.coverArt = song.coverArt;
+
+      const notification = new Notification('Playing', {
+        body: `${this.songName} by ${this.songArtist}`,
+        icon: this.coverArt,
+        image: this.coverArt,
+        silent: true,
+      });
+
+      notification.onclick = () => {
+        // TODO: Make dynamic notification
+        console.log('Do something');
+      };
     },
   },
   watch: {
