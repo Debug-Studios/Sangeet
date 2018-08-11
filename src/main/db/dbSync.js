@@ -3,6 +3,7 @@
 import DataStore from 'nedb';
 import jetpack from 'fs-jetpack';
 import path from 'path';
+import settings from 'electron-settings';
 import { app } from 'electron'; // eslint-disable-line
 // https://github.com/Borewit/music-metadata
 const mm = require('music-metadata');
@@ -37,20 +38,29 @@ async function addMusicFileToDatabase(filePath, fileMetaData) {
 }
 
 // Recursively goes through a folder, retrieves the metadata of files and adds them to database.
-// TODO: modify this to accept multiple folders
 async function listMusicFiles() {
-  jetpack.listAsync(app.getPath('music')).then((list) => {
-    list.forEach(async (file) => {
-      const filePath = path.join(app.getPath('music'), file);
-      if (supportedExtensions.indexOf(path.extname(file)) > -1) {
-        const metaData = await mm.parseFile(filePath, { duration: true, native: true });
-        // Files with no metadata have no titles.
-        if (!metaData.common.title) {
-          metaData.common.title = file;
-        }
+  if (!settings.has('scanPaths')) {
+    settings.set('scanPaths', [app.getPath('music')]);
+  }
+  let syncPaths = settings.get('scanPaths');
+  if (syncPaths.length <= 0) {
+    settings.set('scanPaths', [app.getPath('music')]);
+  }
+  syncPaths = settings.get('scanPaths');
+  syncPaths.forEach((syncPath) => {
+    jetpack.listAsync(syncPath).then((list) => {
+      list.forEach(async (file) => {
+        const filePath = path.join(app.getPath('music'), file);
+        if (supportedExtensions.indexOf(path.extname(file)) > -1) {
+          const metaData = await mm.parseFile(filePath, { duration: true, native: true });
+          // Files with no metadata have no titles.
+          if (!metaData.common.title) {
+            metaData.common.title = file;
+          }
 
-        await addMusicFileToDatabase(filePath, metaData);
-      }
+          await addMusicFileToDatabase(filePath, metaData);
+        }
+      });
     });
   });
 }

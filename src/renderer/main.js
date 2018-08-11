@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
+import settings from 'electron-settings';
 
 // Element UI http://element.eleme.io/#/en-US
 import ElementUI from 'element-ui';
@@ -13,6 +14,7 @@ import uriCreator from '../main/db/uriCreator';
 
 Vue.prototype.$db = db;
 Vue.prototype.$uriCreator = uriCreator;
+Vue.prototype.$settings = settings;
 
 Vue.use(ElementUI);
 

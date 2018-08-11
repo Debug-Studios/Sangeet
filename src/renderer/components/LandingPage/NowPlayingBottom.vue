@@ -49,7 +49,7 @@ export default {
       coverArt: '',
       songName: '',
       songArtist: '',
-      totalTime: 1,
+      totalTime: 10,
       playedTime: 0,
       volume: 80,
       seekbarProgress: 10,
@@ -64,6 +64,7 @@ export default {
 
     const audioPlayer = document.getElementById('audio-player');
 
+
     // Refresh UI every 100 ms
     setInterval(() => {
       // Seek
@@ -74,6 +75,11 @@ export default {
       this.playedTime = Math.ceil(audioPlayer.currentTime);
       this.seekbarProgress = this.playedTime;
       this.isPaused = audioPlayer.paused;
+
+      // Show Progress on Progress Bar
+      // https://electronjs.org/docs/tutorial/progress-bar
+      this.$electron.remote.BrowserWindow.getAllWindows()[0].setProgressBar(this.seekbarProgress);
+
 
       if (this.playedTime >= this.totalTime) {
         this.seekbarProgress = 0;
