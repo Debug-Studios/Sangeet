@@ -2,27 +2,27 @@
   el-container(style="display:block")
     el-container.artist-cover-image
       div.artist-image
-        img.image(src='https://yt3.ggpht.com/a-/ACSszfHOc0KpBVq9EF79t-U1wb3Cy5KWNpm_fm4B2Q=s900-mo-c-c0xffffffff-rj-k-no' )
+        img.image(:src='currentImage' )
       div.artist-name
         span {{songDetail}}
         span.song-artist {{filteredSongs.length}} Songs
     el-container.song-container(style="display:block")
       el-row.song-row(v-for="(filteredSong,index) in filteredSongs")
-            el-container
-              el-col(:span='2')
-                el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' style="margin-top:1rem;").transparent-button
-                //- img(src='http://www.animatedimages.org/data/media/102/animated-music-image-0543.gif' rel='icon' type='image/gif' v-show="index == currentSongIndex" style="margin:1rem 0px 0px 1rem;" )
-              el-col(:span='2')
-                el-button(icon='fa fa-plus' type="primary" plain circle @click='appendSongToQueue(index)' style="margin-top:1rem;").transparent-button
-              el-col(:span='8')
-                h5.song-name {{filteredSong.title}}
-              el-col(:span='6')
-                h5.song-artist {{filteredSong.artist}}
-              el-col(:span='3')
-                h5.song-artist {{filteredSong.album}}
-              el-col(:span='3')
-                //- h5.song-artist {{(filteredSong.duration/60).toFixed(2)}} min
-                h5.song-artist {{Math.floor(filteredSong.duration/60)}}:{{Math.floor(filteredSong.duration% 60)}} min
+        el-container
+          el-col(:span='2')
+            el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' style="margin-top:1rem;").transparent-button
+            //- img(src='http://www.animatedimages.org/data/media/102/animated-music-image-0543.gif' rel='icon' type='image/gif' v-show="index == currentSongIndex" style="margin:1rem 0px 0px 1rem;" )
+          el-col(:span='2')
+            el-button(icon='fa fa-plus' type="primary" plain circle @click='appendSongToQueue(index)' style="margin-top:1rem;").transparent-button
+          el-col(:span='8')
+            h5.song-name {{filteredSong.title}}
+          el-col(:span='6')
+            h5.song-artist {{filteredSong.artist}}
+          el-col(:span='3')
+            h5.song-artist {{filteredSong.album}}
+          el-col(:span='3')
+            //- h5.song-artist {{(filteredSong.duration/60).toFixed(2)}} min
+            h5.song-artist {{Math.floor(filteredSong.duration/60)}}:{{Math.floor(filteredSong.duration% 60)}} min
 </template>
 
 <script>
@@ -34,11 +34,11 @@ export default {
       filteredSongs: [],
       allArtists: [],
       allAlbums: [],
+      currentImage: '',
     };
   },
 
   mounted() {
-    console.log(this.songDetail);
     for (let i = 0; i < this.db.length; i += 1) {
       this.allArtists[i] = this.db[i].artist;
       this.allAlbums[i] = this.db[i].album;
@@ -48,6 +48,7 @@ export default {
     }
     if (this.allAlbums.includes(this.songDetail)) {
       this.filteredSongs = this.db.filter(selectsong => selectsong.album === this.songDetail);
+      this.currentImage = this.filteredSongs[0].coverArt;
     }
   },
   methods: {
