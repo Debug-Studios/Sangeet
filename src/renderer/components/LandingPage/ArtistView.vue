@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import GlobalBus from './GlobalEventBus';
 export default {
   data() {
     return {
@@ -37,7 +36,7 @@ export default {
     }
     this.fetchArtist.sort();
 
-    // Finding total number of Songs in Album.
+    // Finding total number of Songs of Artist.
     for (let i = 0; i < this.fetchArtist.length; i += 1) {
       if (this.fetchArtist[i] !== this.currentSong) {
         if (this.totalArtistSongs > 0) {
