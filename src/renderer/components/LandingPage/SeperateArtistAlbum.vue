@@ -2,7 +2,7 @@
   el-container(style="display:block")
     el-container.artist-cover-image
       div.artist-image
-        img.image(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0L3lQ51i5TweYIFHooJYYgN8NJ2KpUrMSUXQssL1ydddAett8' )
+        img.image(src='https://yt3.ggpht.com/a-/ACSszfHOc0KpBVq9EF79t-U1wb3Cy5KWNpm_fm4B2Q=s900-mo-c-c0xffffffff-rj-k-no' )
       div.artist-name
         span {{songDetail}}
         span.song-artist {{filteredSongs.length}} Songs
@@ -21,7 +21,8 @@
               el-col(:span='3')
                 h5.song-artist {{filteredSong.album}}
               el-col(:span='3')
-                h5.song-artist {{(filteredSong.duration/60).toFixed(2)}} min
+                //- h5.song-artist {{(filteredSong.duration/60).toFixed(2)}} min
+                h5.song-artist {{Math.floor(filteredSong.duration/60)}}:{{Math.floor(filteredSong.duration% 60)}} min
 </template>
 
 <script>
@@ -64,13 +65,13 @@ export default {
 
 <style lang="scss" scoped>
 .artist-cover-image {
-  min-height: 40vh;
+  min-height: 45vh;
   background-image: linear-gradient(
       to right,
       rgba(27, 29, 28, 0.5),
       rgba(252, 95, 69, 0.4)
     ),
-    url("https://img4.nickiswift.com/img/gallery/why-does-eminem-look-so-different-now/run-eminem-run-1519412300.jpg");
+    url("http://www.chavisrecords.net/wp-content/uploads/2017/11/s.jpg");
   background-size: cover;
   background-position: top;
   position: relative;
@@ -79,27 +80,27 @@ export default {
 .artist-image {
   position: absolute;
   left: 2rem;
-  top: 14rem;
+  top: 18rem;
   box-shadow: 5px 5px 15px #1b1d1c;
   border: 1px solid #fafafa;
 }
 
 .artist-name {
   position: absolute;
-  left: 13rem;
-  top: 19.5rem;
+  left: 12rem;
+  top: 22.5rem;
   display: grid;
 }
 
 .image {
-  width: 10rem;
+  width: 9rem;
   height: 8rem;
   display: block;
   overflow: hidden;
 }
 
 .song-container {
-  margin-top: 4rem;
+  margin-top: 5.5rem;
 }
 </style>
 
