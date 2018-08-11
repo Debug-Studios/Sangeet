@@ -33,7 +33,7 @@ export default new Router({
 
   },
   {
-    path: '/songsView',
+    path: '/allsongsView',
     name: 'songs-view',
     component: require('@/components/LandingPage/SongsView.vue').default,
 
@@ -50,9 +50,10 @@ export default new Router({
     component: require('@/components/LandingPage/Settings.vue').default,
   },
   {
-    path: '/album',
-    name: 'album',
+    path: '/songs/:songDetail',
+    name: 'songs',
     component: require('@/components/LandingPage/SeperateArtistAlbum.vue').default,
+    props: true,
   },
   {
     path: '*',
