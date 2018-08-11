@@ -9,7 +9,7 @@
         h5.song-name Album  
       el-col(:span='3')
         h5.song-name Duration  
-    el-row.song-row(v-for="(song,index) in songs" :key="0")
+    el-row.song-row(v-for="(allsong,index) in songs")
       el-container
         el-col(:span='2')
           el-button(icon='fa fa-play' type="primary" plain circle @click='playSong(index)' v-show="index != currentSongIndex" style="margin-top:1rem;").transparent-button
@@ -17,13 +17,13 @@
         el-col(:span='2')
           el-button(icon='fa fa-plus' type="primary" plain circle @click='appendSongToQueue(index)' style="margin-top:1rem;").transparent-button
         el-col(:span='8')
-          h5.song-name {{song.title}}
+          h5.song-name {{allsong.title}}
         el-col(:span='6')
-          h5.song-artist {{song.artist}}
+          h5.song-artist {{allsong.artist}}
         el-col(:span='3')
-          h5.song-artist {{song.album}}
+          h5.song-artist {{allsong.album}}
         el-col(:span='3')
-          h5.song-artist {{(song.duration/60).toFixed(2)}} min
+          h5.song-artist {{(allsong.duration/60).toFixed(2)}} min
 
 
 
@@ -37,13 +37,11 @@ export default {
     return {
       songs: [],
       currentSongIndex: -1,
-      duration: 0,
     };
   },
 
   mounted() {
     this.songs = this.db;
-    console.log(this.songs);
   },
 
   methods: {
@@ -57,7 +55,6 @@ export default {
 
     sortSongs() {
       this.songs.sort();
-      console.log(this.songs);
     },
   },
   props: {

@@ -4,7 +4,7 @@
       el-container.card
         img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
         div(style='padding:1rem;color:#fafafa;')
-          router-link.plain-text(to= "/album" )
+          router-link.plain-text(to= "/songs/Defy" )
             span {{album}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
@@ -13,7 +13,7 @@
               el-dropdown-item.dropdown-menu-item Explore
               el-dropdown-item.dropdown-menu-item Remove
           div.bottom.clearfix
-            span {{songsCount[index]}} Songs
+            span {{albumSongsCount[index]}} Songs
 </template>
 
 <script>
@@ -23,9 +23,9 @@ export default {
     return {
       fetchAlbums: [],
       albums: [],
-      songsCount: [],
+      albumSongsCount: [],
       currentSong: null,
-      totalSongs: 0,
+      totalAlbumSongs: 0,
     };
   },
 
@@ -39,17 +39,17 @@ export default {
     // Finding total number of Songs in Album.
     for (let i = 0; i < this.fetchAlbums.length; i += 1) {
       if (this.fetchAlbums[i] !== this.currentSong) {
-        if (this.totalSongs > 0) {
-          this.songsCount.push(this.totalSongs);
+        if (this.totalAlbumSongs > 0) {
+          this.albumSongsCount.push(this.totalAlbumSongs);
         }
         this.currentSong = this.fetchAlbums[i];
-        this.totalSongs = 1;
+        this.totalAlbumSongs = 1;
       } else {
-        this.totalSongs += 1;
+        this.totalAlbumSongs += 1;
       }
     }
-    if (this.totalSongs > 0) {
-      this.songsCount.push(this.totalSongs);
+    if (this.totalAlbumSongs > 0) {
+      this.albumSongsCount.push(this.totalAlbumSongs);
     }
     const albumSet = new Set(this.fetchAlbums);
     albumSet.forEach((albumName) => {

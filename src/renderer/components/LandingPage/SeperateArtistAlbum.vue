@@ -2,12 +2,12 @@
   el-container(style="display:block")
     el-container.artist-cover-image
       div.artist-image
-        img.image(src='https://img4.nickiswift.com/img/gallery/why-does-eminem-look-so-different-now/run-eminem-run-1519412300.jpg' )
+        img.image(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0L3lQ51i5TweYIFHooJYYgN8NJ2KpUrMSUXQssL1ydddAett8' )
       div.artist-name
-        span EMINEM
-        span.song-artist Total Songs 200
+        span {{songDetail}}
+        span.song-artist {{filteredSongs.length}} Songs
     el-container.song-container(style="display:block")
-      el-row.song-row(v-for="(song,index) in songs" :key="0")
+      el-row.song-row(v-for="(filteredSong,index) in filteredSongs")
             el-container
               el-col(:span='2')
                 el-button(icon='fa fa-play' type="primary" plain circle style="margin-top:1rem;").transparent-button
@@ -15,13 +15,13 @@
               el-col(:span='2')
                 el-button(icon='fa fa-plus' type="primary" plain circle style="margin-top:1rem;").transparent-button
               el-col(:span='8')
-                h5.song-name {{song.title}}
+                h5.song-name {{filteredSong.title}}
               el-col(:span='6')
-                h5.song-artist {{song.artist}}
+                h5.song-artist {{filteredSong.artist}}
               el-col(:span='3')
-                h5.song-artist {{song.album}}
+                h5.song-artist {{filteredSong.album}}
               el-col(:span='3')
-                h5.song-artist {{(song.duration/60).toFixed(2)}} min
+                h5.song-artist {{(filteredSong.duration/60).toFixed(2)}} min
 </template>
 
 <script>
@@ -30,16 +30,32 @@ export default {
 
   data() {
     return {
-      songs: [],
+      filteredSongs: [],
+      allArtists: [],
+      allAlbums: [],
     };
   },
 
   mounted() {
-    this.songs = this.db;
+    console.log(this.songDetail);
+    for (let i = 0; i < this.db.length; i += 1) {
+      this.allArtists[i] = this.db[i].artist;
+      this.allAlbums[i] = this.db[i].album;
+    }
+    if (this.allArtists.includes(this.songDetail)) {
+      this.filteredSongs = this.db.filter(selectsong => selectsong.artist === this.songDetail);
+    }
+    if (this.allAlbums.includes(this.songDetail)) {
+      this.filteredSongs = this.db.filter(selectsong => selectsong.album === this.songDetail);
+    }
   },
   props: {
     db: {
       type: Array,
+      required: true,
+    },
+    songDetail: {
+      type: String,
       required: true,
     },
   },
@@ -70,15 +86,16 @@ export default {
 
 .artist-name {
   position: absolute;
-  left: 14.5rem;
+  left: 13rem;
   top: 19.5rem;
   display: grid;
 }
 
 .image {
-  width: 12rem;
+  width: 10rem;
   height: 8rem;
   display: block;
+  overflow: hidden;
 }
 
 .song-container {

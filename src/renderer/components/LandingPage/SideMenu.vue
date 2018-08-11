@@ -6,7 +6,7 @@
       el-menu-item(index='1')
         i.item-margin.fa.fa-play
         span Now Playing
-    router-link.plain-text(to='/songsView')
+    router-link.plain-text(to='/allsongsView')
       el-menu-item(index='2')
         i.item-margin.fa.fa-music
         span Songs
