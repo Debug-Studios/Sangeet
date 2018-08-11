@@ -69,7 +69,6 @@ async function deleteBrokenRecords() {
     settings.set('scanPaths', [app.getPath('music')]);
   }
   syncPaths = settings.get('scanPaths');
-  console.log(syncPaths);
   db.find({}, (err, docs) => {
     docs.forEach(async (doc) => {
       const exists = await jetpack.existsAsync(doc.path);
