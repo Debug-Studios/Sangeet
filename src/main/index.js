@@ -1,4 +1,5 @@
-import { app, BrowserWindow, Menu } from 'electron'; // eslint-disable-line
+import { app, BrowserWindow, Menu, Tray } from 'electron'; // eslint-disable-line
+import path from 'path';
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -9,26 +10,14 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow;
+let tray = null;
 const winURL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:9080'
     : `file://${__dirname}/index.html`;
 
 // Main Menu
-const mainMenuTemplate = [
-  {
-    label: 'File',
-    submenu: [
-      {
-        label: 'Quit',
-        accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-        click() {
-          app.quit();
-        },
-      },
-    ],
-  },
-];
+const mainMenuTemplate = [{}];
 
 // MacOS requires the menu item to be the second object.
 // This inserts an empty object to the start of mainMenuTemplate
@@ -40,16 +29,55 @@ async function createWindow() {
   /**
    * Initial window options
    */
+
+  let isMinimized = false;
   mainWindow = new BrowserWindow({
     height: 768,
     useContentSize: true,
     width: 1366,
   });
 
+  tray = new Tray(path.join(__static, '/logo.png'));
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Show App',
+      click: () => {
+        mainWindow.show();
+      },
+    },
+    {
+      label: 'Quit',
+      click: () => {
+        app.quit();
+      },
+    },
+  ]);
+  tray.setToolTip('Sangeet');
+  tray.setContextMenu(contextMenu);
+
+  tray.on('click', () => {
+    if (isMinimized) {
+      isMinimized = false;
+      mainWindow.show();
+    } else {
+      isMinimized = true;
+      mainWindow.hide();
+    }
+  });
+
   mainWindow.loadURL(winURL);
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  mainWindow.on('minimize', (event) => {
+    event.preventDefault();
+    mainWindow.hide();
+  });
+
+  mainWindow.on('show', () => {
+    tray.setHighlightMode('always');
   });
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(mainMenuTemplate));
