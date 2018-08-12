@@ -4,7 +4,7 @@
       el-container.card
         img.image(:src='artistCoverImage[index]')
         div(style='padding:1rem;color:#fafafa;')
-          router-link.plain-text(:to="'/songs/' + artist")
+          router-link.plain-text(:to="'/songs/' + artist.name")
             span {{artist.name}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
