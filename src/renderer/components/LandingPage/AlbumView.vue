@@ -2,10 +2,10 @@
   el-row
     el-col(:span='5' v-for='(album, index) in albums')
       el-container.card
-        img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
+        img.image(:src='album.coverArt')
         div(style='padding:1rem;color:#fafafa;')
-          router-link.plain-text(:to= "'/songs/' + album" )
-            span {{album}}
+          router-link.plain-text(:to= "'/songs/' + album.name" )
+            span {{album.name}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
               i.fa.fa-ellipsis-v 
@@ -32,17 +32,16 @@ export default {
 
   mounted() {
     for (let i = 0; i < this.db.length; i += 1) {
-      this.fetchAlbums[i] = this.db[i].album;
+      this.fetchAlbums[i] = { name: this.db[i].album, coverArt: this.db[i].coverArt };
     }
-    this.fetchAlbums.sort();
 
     // Finding total number of Songs in Album.
     for (let i = 0; i < this.fetchAlbums.length; i += 1) {
-      if (this.fetchAlbums[i] !== this.currentSong) {
+      if (this.fetchAlbums[i].name !== this.currentSong) {
         if (this.totalAlbumSongs > 0) {
           this.albumSongsCount.push(this.totalAlbumSongs);
         }
-        this.currentSong = this.fetchAlbums[i];
+        this.currentSong = this.fetchAlbums[i].name;
         this.totalAlbumSongs = 1;
       } else {
         this.totalAlbumSongs += 1;
@@ -51,13 +50,21 @@ export default {
     if (this.totalAlbumSongs > 0) {
       this.albumSongsCount.push(this.totalAlbumSongs);
     }
-    const albumSet = new Set(this.fetchAlbums);
-    albumSet.forEach((albumName) => {
-      if (!(albumName in this.albums)) {
-        this.albums.push(albumName);
+
+
+    this.fetchAlbums.forEach((album) => {
+      let albumAlreadyShown = false;
+      let i = this.albums.length;
+      while (i--) { // eslint-disable-line
+        if (this.albums[i].name === album.name) {
+          albumAlreadyShown = true;
+          break;
+        }
+      }
+      if (!albumAlreadyShown) {
+        this.albums.push(album);
       }
     });
-    console.log(albumSet);
   },
   props: {
     db: {
