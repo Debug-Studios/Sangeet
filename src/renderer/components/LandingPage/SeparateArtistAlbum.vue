@@ -45,10 +45,19 @@ export default {
     }
     if (this.allArtists.includes(this.songDetail)) {
       this.filteredSongs = this.db.filter(selectsong => selectsong.artist === this.songDetail);
+      if (this.filteredSongs[0].coverArt != null) {
+        this.currentImage = this.filteredSongs[0].coverArt;
+      } else {
+        this.currentImage = 'https://denelecampbell.files.wordpress.com/2018/02/o-music-heart-facebook.jpg';
+      }
     }
     if (this.allAlbums.includes(this.songDetail)) {
       this.filteredSongs = this.db.filter(selectsong => selectsong.album === this.songDetail);
-      this.currentImage = this.filteredSongs[0].coverArt;
+      if (this.filteredSongs[0].coverArt != null) {
+        this.currentImage = this.filteredSongs[0].coverArt;
+      } else {
+        this.currentImage = 'https://denelecampbell.files.wordpress.com/2018/02/o-music-heart-facebook.jpg';
+      }
     }
   },
   methods: {
