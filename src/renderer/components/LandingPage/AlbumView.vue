@@ -1,8 +1,8 @@
 <template lang="pug">
   el-row
-    el-col(:span='5' v-for='(album, index) in albums')
+    el-col(:span='4' v-for='(album, index) in albums ')
       el-container.card
-        img.image(:src='album.coverArt')
+        img.image(:src='albumCoverImage[index]')
         div(style='padding:1rem;color:#fafafa;')
           router-link.plain-text(:to= "'/songs/' + album.name" )
             span {{album.name}}
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-// import GlobalBus from './GlobalEventBus';
 export default {
   data() {
     return {
@@ -26,7 +25,7 @@ export default {
       albumSongsCount: [],
       currentSong: null,
       totalAlbumSongs: 0,
-      albumCovers: [],
+      albumCoverImage: [],
     };
   },
 
@@ -65,6 +64,13 @@ export default {
         this.albums.push(album);
       }
     });
+    for (let i = 0; i < this.albums.length; i += 1) {
+      if (this.albums[i].coverArt != null) {
+        this.albumCoverImage[i] = this.albums[i].coverArt;
+      } else {
+        this.albumCoverImage.push('https://caurusacademy.org/wp-content/uploads/Music.jpg');
+      }
+    }
   },
   props: {
     db: {

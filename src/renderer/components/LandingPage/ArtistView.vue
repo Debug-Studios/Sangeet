@@ -1,11 +1,11 @@
 <template lang="pug">
   el-row
-    el-col(:span='5' v-for='(artist,index) in artists' :key='artist')
+    el-col(:span='4' v-for='(artist,index) in artists' :key='artist')
       el-container.card
-        img.image(src='https://s.mxmcdn.net/images-storage/albums4/9/3/4/8/6/3/38368439_800_800.jpg')
+        img.image(:src='artistCoverImage[index]')
         div(style='padding:1rem;color:#fafafa;')
           router-link.plain-text(:to="'/songs/' + artist")
-            span {{artist}}
+            span {{artist.name}}
           el-dropdown.button(trigger='click')
             span.el-dropdown-link
               i.fa.fa-ellipsis-v
@@ -27,22 +27,21 @@ export default {
       totalArtistSongs: 0,
       artistSongsCount: [],
       currentSong: null,
+      artistCoverImage: [],
     };
   },
 
   mounted() {
     for (let i = 0; i < this.db.length; i += 1) {
-      this.fetchArtist[i] = this.db[i].artist;
+      this.fetchArtist[i] = { name: this.db[i].artist, coverArt: this.db[i].coverArt };
     }
-    this.fetchArtist.sort();
-
     // Finding total number of Songs of Artist.
     for (let i = 0; i < this.fetchArtist.length; i += 1) {
-      if (this.fetchArtist[i] !== this.currentSong) {
+      if (this.fetchArtist[i].name !== this.currentSong) {
         if (this.totalArtistSongs > 0) {
           this.artistSongsCount.push(this.totalArtistSongs);
         }
-        this.currentSong = this.fetchArtist[i];
+        this.currentSong = this.fetchArtist[i].name;
         this.totalArtistSongs = 1;
       } else {
         this.totalArtistSongs += 1;
@@ -51,12 +50,32 @@ export default {
     if (this.totalArtistSongs > 0) {
       this.artistSongsCount.push(this.totalArtistSongs);
     }
-    const artistSet = new Set(this.fetchArtist);
-    artistSet.forEach((artistName) => {
-      if (!(artistName in this.artists)) {
-        this.artists.push(artistName);
+    // const artistSet = new Set(this.fetchArtist);
+    // artistSet.forEach((artistName) => {
+    //   if (!(artistName in this.artists)) {
+    //     this.artists.push(artistName);
+    //   }
+    // });
+    this.fetchArtist.forEach((artist) => {
+      let artistAlreadyShown = false;
+      let i = this.artists.length;
+      while (i--) { // eslint-disable-line
+        if (this.artists[i].name === artist.name) {
+          artistAlreadyShown = true;
+          break;
+        }
+      }
+      if (!artistAlreadyShown) {
+        this.artists.push(artist);
       }
     });
+    for (let i = 0; i < this.artists.length; i += 1) {
+      if (this.artists[i].coverArt != null) {
+        this.artistCoverImage[i] = this.artists[i].coverArt;
+      } else {
+        this.artistCoverImage.push('https://yt3.ggpht.com/OgVV66t5vou1LkAbPh7yHbJA73Z2kKHs6-mFaeVFjnlU-pWESAPXFi-5pMASF7Mp1YLfoMdeI38v68U=s900-mo-c-c0xffffffff-rj-k-no');
+      }
+    }
   },
   props: {
     db: {
