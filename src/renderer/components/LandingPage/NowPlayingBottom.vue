@@ -17,7 +17,7 @@
 
       el-row.media-controls
         el-col(:span="4")
-          h5.time-text {{(playedTime/60).toFixed(2)}} / {{(totalTime/60).toFixed(2)}}
+          h5.time-text {{playedTimeinMinutes}} / {{totalTimeinMinutes}}
 
         el-col(:span="14" style="display:flex")
           el-col(:span="6").el-container.right-container
@@ -50,7 +50,9 @@ export default {
       songName: '',
       songArtist: '',
       totalTime: 10,
+      totalTimeinMinutes: '',
       playedTime: 0,
+      playedTimeinMinutes: '',
       volume: 80,
       seekbarProgress: 10,
       currentSongUri: '',
@@ -76,12 +78,15 @@ export default {
       this.seekbarProgress = this.playedTime;
       this.isPaused = audioPlayer.paused;
 
+      // Convert time in seconds to minutes
+      this.playedTimeinMinutes = `${parseInt(this.playedTime / 60, 10)}:${this.playedTime % 60}`;
+
       // Show Progress on Progress Bar
       // https://electronjs.org/docs/tutorial/progress-bar
       this.$electron.remote.BrowserWindow.getAllWindows()[0].setProgressBar(this.seekbarProgress);
 
-
       if (this.playedTime >= this.totalTime) {
+        // Play next song when this one ends
         this.seekbarProgress = 0;
         GlobalBus.$emit('play-next-song');
       }
@@ -134,6 +139,7 @@ export default {
         this.currentSongUri = content;
       });
       this.totalTime = Math.round(song.duration);
+      this.totalTimeinMinutes = `${parseInt(this.totalTime / 60, 10)}:${this.totalTime % 60}`;
       this.coverArt = song.coverArt;
 
       const notification = new Notification('Playing', {
