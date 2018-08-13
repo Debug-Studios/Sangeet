@@ -1,8 +1,18 @@
+<div align="center">
+
 # Sangeet
 
-> A Free and Cross-platform music player for Windows, Linux and MacOS
+A Free and Cross-platform music player for Windows, Linux and MacOS inspired by Clementine.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/beikx7kp7gnhabn4/branch/master?svg=true)](https://ci.appveyor.com/project/prajjwaldimri/sangeet/branch/master)[![Build Status](https://travis-ci.org/Debug-Studios/Sangeet.svg?branch=master)](https://travis-ci.org/Debug-Studios/Sangeet)
+</div>
+
+<div align="center">
+
+[![forthebadge](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/beikx7kp7gnhabn4/branch/master?svg=true)](https://ci.appveyor.com/project/prajjwaldimri/sangeet/branch/master) [![Build Status](https://travis-ci.org/Debug-Studios/Sangeet.svg?branch=master)](https://travis-ci.org/Debug-Studios/Sangeet) [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+
+</div>
 
 ## Getting Started
 
@@ -10,18 +20,18 @@
 
 ## Features
 
-    Windows, linux, MacOS
-        Fetch local songs
-        Beautiful UI with multiple themes
-        Full Fledged Example
-        play (local files)
-        stop
-        pause
-        seek
-        shuffle
-        Album Art
-        onComplete
-        onDuration / onCurrentPosition
+- Windows, linux, MacOS
+- Fetch local songs
+- Beautiful UI with multiple themes
+- Full Fledged Example
+- play (local files)
+- stop
+- pause
+- seek
+- shuffle
+- Album Art
+- onComplete
+- onDuration / onCurrentPosition
 
 ## Prerequisites
 
@@ -29,7 +39,7 @@
 
 ## Installing
 
-#### Step by step:
+### Step by step:
 
 1. Install Editor
 
@@ -41,8 +51,8 @@
 
 ### Front-end
 
-1.  Pug
-2.  scss
+1. Pug
+2. SCSS
 
 ### Back-end
 
@@ -62,7 +72,7 @@
 
 Copyright 2018 Debug Studios
 
-Licensed under the crack version of VScode, Version 1.25.1 (the "Cracked");
+Licensed under the crack version of VSCode, Version 1.25.1 (the "Cracked");
 you may not use this file except in compliance with the License.
 
 Unless required by applicable law or agreed to in writing, software
