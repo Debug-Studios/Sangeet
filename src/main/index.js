@@ -99,7 +99,7 @@ async function createWindow() {
     event.sender.send('show-notification-loading', 'Refreshing your library...');
     await deleteBrokenRecords();
     await listMusicFiles();
-    // event.sender.send('show-notification-success', 'Library synced');
+    event.sender.send('show-notification-success', 'Library synced');
     event.sender.send('hide-notification-loading');
     event.sender.send('sync-db');
   });
