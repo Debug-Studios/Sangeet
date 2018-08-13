@@ -50,6 +50,12 @@ export default {
         type: 'success',
       });
     });
+    this.$electron.ipcRenderer.on('hide-notification-loading', () => {
+      this.$message.close();
+    });
+    this.$electron.ipcRenderer.on('sync-db', () => {
+      this.loadDatabase();
+    });
   },
 
   methods: {
