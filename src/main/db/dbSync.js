@@ -4,7 +4,7 @@ import DataStore from 'nedb';
 import jetpack from 'fs-jetpack';
 import path from 'path';
 import settings from 'electron-settings';
-import { app } from 'electron'; // eslint-disable-line
+import { app, ipcMain } from 'electron'; // eslint-disable-line
 // https://github.com/Borewit/music-metadata
 const mm = require('music-metadata');
 
@@ -38,7 +38,7 @@ async function addMusicFileToDatabase(filePath, fileMetaData) {
 }
 
 // Recursively goes through a folder, retrieves the metadata of files and adds them to database.
-async function listMusicFiles() {
+export async function listMusicFiles() {
   let scanPaths = settings.get('scanPaths');
   scanPaths = settings.get('scanPaths');
 
@@ -81,7 +81,7 @@ async function listMusicFiles() {
 }
 
 // Delete database records of files which are not available at their paths.
-async function deleteBrokenRecords() {
+export async function deleteBrokenRecords() {
   if (!settings.has('scanPaths')) {
     settings.set('scanPaths', [app.getPath('music')]);
   }
@@ -103,9 +103,3 @@ async function deleteBrokenRecords() {
     });
   });
 }
-
-// Starts here
-(async () => {
-  await deleteBrokenRecords();
-  await listMusicFiles();
-})();

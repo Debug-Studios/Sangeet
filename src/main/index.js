@@ -1,5 +1,6 @@
-import { app, BrowserWindow, Menu, Tray } from 'electron'; // eslint-disable-line
+import { app, BrowserWindow, Menu, Tray, ipcMain } from 'electron'; // eslint-disable-line
 import path from 'path';
+import { listMusicFiles, deleteBrokenRecords } from './db/dbSync';
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -93,7 +94,15 @@ async function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(mainMenuTemplate));
 
-  require('./db/dbSync');
+  // Sync Database
+  ipcMain.on('refresh-database', async (event, arg) => {
+    event.sender.send('show-notification-info', 'Removing broken links');
+    await deleteBrokenRecords();
+    event.sender.send('show-notification-info', 'Synchronizing Database');
+    await listMusicFiles();
+    event.sender.send('show-notification-success', 'Database Synced');
+    event.sender.send('sync-db');
+  });
 }
 
 app.on('ready', createWindow);
