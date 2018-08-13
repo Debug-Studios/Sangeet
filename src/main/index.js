@@ -96,11 +96,11 @@ async function createWindow() {
 
   // Sync Database
   ipcMain.on('refresh-database', async (event) => {
-    event.sender.send('show-notification-info', 'Removing broken links');
+    event.sender.send('show-notification-loading', 'Refreshing your library...');
     await deleteBrokenRecords();
-    event.sender.send('show-notification-info', 'Synchronizing Database');
     await listMusicFiles();
-    event.sender.send('show-notification-success', 'Database Synced');
+    event.sender.send('show-notification-success', 'Library synced');
+    event.sender.send('hide-notification-loading');
     event.sender.send('sync-db');
   });
 }
