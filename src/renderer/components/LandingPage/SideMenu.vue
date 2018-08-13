@@ -18,10 +18,10 @@
       el-menu-item(index='4')
         i.item-margin.fa.fa-images
         span Albums
-    router-link.plain-text(to='/playlistView')
-      el-menu-item(index='5')
-        i.item-margin.fa.fa-list-alt
-        span Playlists
+    //- router-link.plain-text(to='/playlistView')
+    //-   el-menu-item(index='5')
+    //-     i.item-margin.fa.fa-list-alt
+    //-     span Playlists
     router-link.plain-text(to='/settings')
       el-menu-item.plain(index='6')
         i.item-margin.fa.fa-sliders-h
