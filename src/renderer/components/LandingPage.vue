@@ -33,22 +33,36 @@ export default {
     };
   },
   async mounted() {
-    this.$db.find({}, (err, docs) => {
-      if (err) console.error('Error loading song database. Please restart!');
+    this.loadDatabase();
+    this.$electron.ipcRenderer.send('refresh-database');
+    this.$electron.ipcRenderer.on('show-notification-loading', (event, arg) => {
+      this.$message({
+        title: 'Info',
+        message: arg,
+        customClass: 'notification',
+      });
+    });
+  },
+
+  methods: {
+    loadDatabase() {
+      this.$db.find({}, (err, docs) => {
+        if (err) console.error('Error loading song database. Please restart!');
 
 
-      // Retrieve the cover art for all entries
-      docs.forEach((song, index) => {
-        this.$uriCreator.generateImageUri(song.path, (image) => {
-          Object.defineProperty(this.db[index], 'coverArt', {
-            value: image,
-            writable: false,
+        // Retrieve the cover art for all entries
+        docs.forEach((song, index) => {
+          this.$uriCreator.generateImageUri(song.path, (image) => {
+            Object.defineProperty(this.db[index], 'coverArt', {
+              value: image,
+              writable: false,
+            });
           });
         });
-      });
 
-      this.db = docs;
-    });
+        this.db = docs;
+      });
+    },
   },
 };
 </script>
@@ -69,6 +83,20 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.notification {
+  background-color: #1b1d1c;
+  border: 0px;
+  border-radius: 0px;
+}
+
+.notification .el-notification__group h2 {
+  color: #fff;
+}
+
+.notification .el-notification__icon {
+  color: #fc5f45;
 }
 </style>
 
