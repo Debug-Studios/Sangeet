@@ -10,100 +10,52 @@ A Free and Cross-platform music player for Windows, Linux and MacOS inspired by 
 
 [![forthebadge](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/beikx7kp7gnhabn4/branch/master?svg=true)](https://ci.appveyor.com/project/prajjwaldimri/sangeet/branch/master) [![Build Status](https://travis-ci.org/Debug-Studios/Sangeet.svg?branch=master)](https://travis-ci.org/Debug-Studios/Sangeet) [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![AppVeyor](https://img.shields.io/appveyor/ci/prajjwaldimri/Sangeet.svg?style=for-the-badge&logo=appveyor)](https://ci.appveyor.com/project/prajjwaldimri/sangeet/branch/master) [![Travis (.org)](https://img.shields.io/travis/Debug-Studios/Sangeet.svg?style=for-the-badge&logo=travis)](https://travis-ci.org/Debug-Studios/Sangeet.svg?branch=master) [![Code Style](https://img.shields.io/badge/Code%20Style-airbnb-ff69b4.svg?style=for-the-badge&logo=airbnb)](https://github.com/airbnb/javascript)
 
 </div>
 
-## Getting Started
+## Installing
 
-> To use this project, simple open it in any editor.
+Download appropriate installer for your platform from releases page.
 
 ## Features
 
-- Windows, linux, MacOS
-- Fetch local songs
-- Beautiful UI with multiple themes
-- Full Fledged Example
-- play (local files)
-- stop
-- pause
-- seek
-- shuffle
-- Album Art
-- onComplete
-- onDuration / onCurrentPosition
+- Cross-Platform
+- Robust queue functionality
+- Runs in background
+- Mini Player in taskbar (Planned)
+- Themeable (Planned)
 
-## Prerequisites
+## Contributing
 
-> Use editors like VScode, Atom, Brackets, etc...
+### Before you start
 
-## Installing
+- Yarn is preferred over npm.
 
-### Step by step:
+- Sangeet uses git-flow branching model. Read more about it here: [https://nvie.com/posts/a-successful-git-branching-model/](https://nvie.com/posts/a-successful-git-branching-model/)
 
-1. Install Editor
+- The boilerplate used is [electron-vue](https://github.com/SimulatedGREG/electron-vue). Make sure to read its docs first to get an idea of the project structure. [https://simulatedgreg.gitbooks.io/electron-vue/content/](https://simulatedgreg.gitbooks.io/electron-vue/content/)
 
-2. Click Open Project and choose sangeet folder location (example: desktop)
+### Getting Started
 
-3. Done! Now only wait for open the player project in editor.
+To run development server with hot reload capabilities use
 
-## Technologies used
+```bash
+yarn run dev
+```
 
-### Front-end
+To build applications for different platforms use
 
-1. Pug
-2. SCSS
-
-### Back-end
-
-1. Electron
-2. VueJs
-3. Json
+```bash
+yarn run build
+```
 
 ## Created & Maintained By
 
-> [Prajjwal Dimri- Totally not a robot](www.prajjwaldimri.me) \ [Github](https://github.com/prajjwaldimri) \ [Telegram](t.me/prajjwaldimri)\ [Twitter](twitter.com/prajjwaldimri)
+#### [Prajjwal Dimri](https://github.com/prajjwaldimri)
 
-> [Ayush Bahuguna- Totally not a Chutiya](www.ayushbahuguna.me) \ [Github](https://github.com/ayushbahuguna) \ [Telegram](t.me/ayushbahuguna)\ [Twitter](twitter.com/ayushbahuguna)
+[![About](https://img.shields.io/badge/about-Website-blue.svg?longCache=true&style=for-the-badge)](https://prajjwaldimri.me) [![Chat](https://img.shields.io/badge/chat-on%20telegram-orange.svg?longCache=true&style=for-the-badge&logo=telegram)](https://t.me/prajjwaldimri)
 
-> If you found this project helpful or you learned something from the source code and want to thank us, consider buying us 2 bottels of [phenyl](<(https://www.amazon.in/Nikleen-White-Phenyl-Concentrate-Rose/dp/B01KUNMDLA)>) for drinking purpose :D
+#### [Ayush Bahuguna](https://github.com/ayushbahuguna)
 
-## License
-
-Copyright 2018 Debug Studios
-
-Licensed under the crack version of VSCode, Version 1.25.1 (the "Cracked");
-you may not use this file except in compliance with the License.
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an **"AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND**, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-````bash
-You need three OS only for installing this software in your computer
-
-#### Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
-
-# run unit tests
-npm test
-
-
-# lint all JS/Vue component files in `src/`
-npm run lint
-````
-
----
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+[![About](https://img.shields.io/badge/Twitter-%40Bahuguna12Ayush-blue.svg?longCache=true&style=for-the-badge)](https://twitter.com/bahuguna12ayush) [![Chat](https://img.shields.io/badge/chat-on%20telegram-orange.svg?longCache=true&style=for-the-badge&logo=telegram)](https://t.me/ayushbahuguna)
