@@ -95,7 +95,7 @@ async function createWindow() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(mainMenuTemplate));
 
   // Sync Database
-  ipcMain.on('refresh-database', async (event, arg) => {
+  ipcMain.on('refresh-database', async (event) => {
     event.sender.send('show-notification-info', 'Removing broken links');
     await deleteBrokenRecords();
     event.sender.send('show-notification-info', 'Synchronizing Database');
