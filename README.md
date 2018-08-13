@@ -1,10 +1,12 @@
-# sangeet
+# Sangeet
 
 > A Free and Cross-platform music player for Windows, Linux and MacOS
 
+[![Build status](https://ci.appveyor.com/api/projects/status/beikx7kp7gnhabn4/branch/master?svg=true)](https://ci.appveyor.com/project/prajjwaldimri/sangeet/branch/master)[![Build Status](https://travis-ci.org/Debug-Studios/Sangeet.svg?branch=master)](https://travis-ci.org/Debug-Studios/Sangeet)
+
 ## Getting Started
 
->To use this project, simple open it in any editor.
+> To use this project, simple open it in any editor.
 
 ## Features
 
@@ -21,10 +23,9 @@
         onComplete
         onDuration / onCurrentPosition
 
-
 ## Prerequisites
 
->Use editors like VScode, Atom, Brackets, etc...
+> Use editors like VScode, Atom, Brackets, etc...
 
 ## Installing
 
@@ -38,24 +39,24 @@
 
 ## Technologies used
 
- ### Front-end
- 1. Pug
- 2. scss 
+### Front-end
+
+1.  Pug
+2.  scss
 
 ### Back-end
+
 1. Electron
 2. VueJs
 3. Json
 
 ## Created & Maintained By
 
->[Prajjwal Dimri- Totally not a robot](www.prajjwaldimri.me)  \ [Github](https://github.com/prajjwaldimri) \ [Telegram](t.me/prajjwaldimri)\ [Twitter](twitter.com/prajjwaldimri)
+> [Prajjwal Dimri- Totally not a robot](www.prajjwaldimri.me) \ [Github](https://github.com/prajjwaldimri) \ [Telegram](t.me/prajjwaldimri)\ [Twitter](twitter.com/prajjwaldimri)
 
->[Ayush Bahuguna- Totally not a Chutiya](www.ayushbahuguna.me)  \ [Github](https://github.com/ayushbahuguna) \ [Telegram](t.me/ayushbahuguna)\ [Twitter](twitter.com/ayushbahuguna)
+> [Ayush Bahuguna- Totally not a Chutiya](www.ayushbahuguna.me) \ [Github](https://github.com/ayushbahuguna) \ [Telegram](t.me/ayushbahuguna)\ [Twitter](twitter.com/ayushbahuguna)
 
->If you found this project helpful or you learned something from the source code and want to thank us, consider buying us 2 bottels of [phenyl]((https://www.amazon.in/Nikleen-White-Phenyl-Concentrate-Rose/dp/B01KUNMDLA) ) for drinking purpose :D
-
-    
+> If you found this project helpful or you learned something from the source code and want to thank us, consider buying us 2 bottels of [phenyl](<(https://www.amazon.in/Nikleen-White-Phenyl-Concentrate-Rose/dp/B01KUNMDLA)>) for drinking purpose :D
 
 ## License
 
@@ -70,9 +71,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND**, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-
-``` bash
-You need three OS only for installing this software in your computer 
+````bash
+You need three OS only for installing this software in your computer
 
 #### Build Setup
 
@@ -92,8 +92,7 @@ npm test
 
 # lint all JS/Vue component files in `src/`
 npm run lint
-
-```
+````
 
 ---
 
