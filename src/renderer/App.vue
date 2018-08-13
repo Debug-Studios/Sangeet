@@ -110,4 +110,17 @@ body {
   background-color: darken(#21272c, 1);
   margin-top: 2px;
 }
+.notification {
+  background-color: #1b1d1c;
+  border: 0px;
+  border-radius: 0px;
+}
+
+.notification .el-notification__group h2 {
+  color: #fff;
+}
+
+.notification .el-notification__icon {
+  color: #fc5f45;
+}
 </style>

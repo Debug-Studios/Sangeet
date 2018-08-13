@@ -1,6 +1,15 @@
-import { app, BrowserWindow, Menu, Tray, ipcMain } from 'electron'; // eslint-disable-line
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  Tray,
+  ipcMain,
+} from 'electron'; // eslint-disable-line
 import path from 'path';
-import { listMusicFiles, deleteBrokenRecords } from './db/dbSync';
+import {
+  listMusicFiles,
+  deleteBrokenRecords,
+} from './db/dbSync';
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -13,9 +22,9 @@ if (process.env.NODE_ENV !== 'development') {
 let mainWindow;
 let tray = null;
 const winURL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:9080'
-    : `file://${__dirname}/index.html`;
+  process.env.NODE_ENV === 'development' ?
+    'http://localhost:9080' :
+    `file://${__dirname}/index.html`;
 
 // Main Menu
 const mainMenuTemplate = [{}];
@@ -41,20 +50,19 @@ async function createWindow() {
   });
 
   tray = new Tray(path.join(__static, '/logo.png'));
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'Show App',
-      click: () => {
-        mainWindow.show();
-      },
+  const contextMenu = Menu.buildFromTemplate([{
+    label: 'Show App',
+    click: () => {
+      mainWindow.show();
     },
-    {
-      label: 'Quit',
-      click: () => {
-        quitCompletely = true;
-        app.quit();
-      },
+  },
+  {
+    label: 'Quit',
+    click: () => {
+      quitCompletely = true;
+      app.quit();
     },
+  },
   ]);
   tray.setToolTip('Sangeet');
   tray.setContextMenu(contextMenu);
@@ -99,7 +107,7 @@ async function createWindow() {
     event.sender.send('show-notification-loading', 'Refreshing your library...');
     await deleteBrokenRecords();
     await listMusicFiles();
-    event.sender.send('show-notification-success', 'Library synced');
+    // event.sender.send('show-notification-success', 'Library synced');
     event.sender.send('hide-notification-loading');
     event.sender.send('sync-db');
   });
