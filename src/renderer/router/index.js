@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/components/LandingPage/NowPlaying.vue').default,
+      component: require('@/components/LandingPage/SongsView.vue').default,
     },
     {
       path: '/about',

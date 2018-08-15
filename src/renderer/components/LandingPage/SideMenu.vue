@@ -2,10 +2,10 @@
   el-menu.el-menu-vertical(default-active ='1' background-color='#1b1d1c' text-color='#fff' active-text-color='#fc5f45').side-menu
     h1.app-title SANGEET
     h3.app-subtitle By Debug Studios
-    router-link.plain-text(to='/nowPlaying')
-      el-menu-item(index='1')
-        i.item-margin.fa.fa-play
-        span Now Playing
+    //- router-link.plain-text(to='/nowPlaying')
+    //-   el-menu-item(index='1')
+    //-     i.item-margin.fa.fa-play
+    //-     span Now Playing
     router-link.plain-text(to='/allsongsView')
       el-menu-item(index='2')
         i.item-margin.fa.fa-music

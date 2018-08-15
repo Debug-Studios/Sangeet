@@ -1,7 +1,7 @@
 <template lang="pug">
   el-row
     el-col(:span='4' v-for='(album, index) in albums ')
-      el-container.card
+      div.card
         img.image(:src='albumCoverImage[index]')
         div(style='padding:1rem;color:#fafafa;')
           router-link.plain-text(:to= "'/songs/' + album.name" )

@@ -1,6 +1,6 @@
 <template lang="pug">
   el-row
-    el-col(:span='4' v-for='(artist,index) in artists' :key='artist')
+    el-col(:span='4' v-for='(artist,index) in artists')
       el-container.card
         img.image(:src='artistCoverImage[index]')
         div(style='padding:1rem;color:#fafafa;')
@@ -50,12 +50,6 @@ export default {
     if (this.totalArtistSongs > 0) {
       this.artistSongsCount.push(this.totalArtistSongs);
     }
-    // const artistSet = new Set(this.fetchArtist);
-    // artistSet.forEach((artistName) => {
-    //   if (!(artistName in this.artists)) {
-    //     this.artists.push(artistName);
-    //   }
-    // });
     this.fetchArtist.forEach((artist) => {
       let artistAlreadyShown = false;
       let i = this.artists.length;
@@ -102,6 +96,7 @@ export default {
 .image {
   width: 100%;
   display: block;
+  object-fit: cover;
   box-shadow: 5px 5px 15px #1b1d1c;
 }
 
